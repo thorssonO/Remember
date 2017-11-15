@@ -11,8 +11,6 @@ public class AddRemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_rem);
 
 
-
-
         // Hämta ut knappen add item
         // sätt en onClick som programmatiskt skapar en EditText
         // och "addar" den till denna activitys layout
