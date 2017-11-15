@@ -33,12 +33,13 @@ public class ReminderList {
     }
 
     // Maybe a method which returns a List<ReminderItem> with the unchecked items
-    public boolean areAllItemsChecked() {
+
+    /*public boolean areAllItemsChecked() {
         for(ReminderItem item : items) {
             if ( !item.isChecked()) {
                 return false;
             }
         }
         return true;
-    }
+    }*/
 }

@@ -3,7 +3,7 @@ package com.example.oscarthorsson.remember;
 import java.time.LocalDate;
 
 /**
- * Created by oscarthorsson on 2017-11-13.
+ * Created by Oscar Thorsson on 2017-11-13.
  */
 
 class ReminderItem {
@@ -14,7 +14,7 @@ class ReminderItem {
         this.name = name;
     }
 
-    public String toString() {
+    /*public String toString() {
         return name + " (" + isChecked?"checked":"not checked"+ ")";
-    }
+    }*/
 }
