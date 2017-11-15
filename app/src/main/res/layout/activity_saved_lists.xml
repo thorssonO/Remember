@@ -25,9 +25,10 @@
         android:id="@+id/textView2"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:text="Saved Lists"
+        android:text="@string/saved_lists"
         tools:layout_editor_absoluteX="60dp"
         tools:layout_editor_absoluteY="134dp" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,7 +14,11 @@ class ReminderItem {
         this.name = name;
     }
 
-    /*public String toString() {
-        return name + " (" + isChecked?"checked":"not checked"+ ")";
-    }*/
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public String toString() {
+        return name + " (" + (isChecked?"checked":"not checked")+ ")";
+    }
 }

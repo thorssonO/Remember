@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddRemActivity"></activity>
+        <activity android:name=".SavedListsActivity"></activity>
     </application>
 
 </manifest>

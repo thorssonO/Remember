@@ -8,4 +8,6 @@
     <string name="add_reminder">Add Reminder</string>
     <string name="enter_title_prompt">Enter the title</string>
     <string name="save">Save</string>
+    <string name="saved_lists">Saved Lists</string>
+    <string name="settings">Settings</string>
 </resources>

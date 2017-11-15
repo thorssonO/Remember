@@ -9,9 +9,10 @@ import android.widget.Button;
 public class HomeActivity extends AppCompatActivity {
 
     private Button newReminders;
+    private Button savedReminders;
 
     public void onClickNewRem(){
-        newReminders = (Button)findViewById(R.id.newReminders);
+        newReminders = findViewById(R.id.newReminders);
         newReminders.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -22,11 +23,24 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickSavedReminders(){
+        savedReminders = findViewById(R.id.savedReminders);
+        savedReminders.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Intent savedRemindersIntent = new Intent(HomeActivity.this, SavedListsActivity.class);
+                startActivity(savedRemindersIntent);
+            }
+        });
+    }
+
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home);
             onClickNewRem();
+            onClickSavedReminders();
             //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
             //setSupportActionBar(settingsToolbar);
     }
