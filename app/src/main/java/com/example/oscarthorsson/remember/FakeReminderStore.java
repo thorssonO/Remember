@@ -11,24 +11,28 @@ import java.util.List;
 
 public class FakeReminderStore
 {
+    private static FakeReminderStore instance;
 
     List<ReminderList> reminders;
 
-    public FakeReminderStore (){
+    public static FakeReminderStore getInstance() {
+        if (instance == null ) {
+            instance = new FakeReminderStore();
+        }
+        return instance;
+    }
+    private FakeReminderStore (){
         reminders= new ArrayList<>();
-        ReminderItem item = new ReminderItem("W5w-lampa");
-        List<ReminderItem> items = new ArrayList<>();
-        items.add(item);
-        ReminderList l = new ReminderList("Bilen", items, null);
+    }
+
+    public void addReminderList(ReminderList list) {
+        reminders.add(list);
     }
 
     public List<ReminderList> getReminders(){
         return reminders;
     }
 
-    public List<ReminderItem> getItems(ReminderList list){
-        return list.items();
-    }
 
 
 }

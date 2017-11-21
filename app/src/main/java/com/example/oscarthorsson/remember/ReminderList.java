@@ -1,6 +1,7 @@
 package com.example.oscarthorsson.remember;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,9 +11,10 @@ import java.util.List;
 public class ReminderList {
     String title;
     List<ReminderItem> items;
-    LocalDate alarmDate;
+    //LocalDate alarmDate;  TODO: find out if we can move up to API-level 26
+    Date alarmDate;
 
-    public ReminderList(String title, List<ReminderItem> items, LocalDate alarmDate) {
+    public ReminderList(String title, List<ReminderItem> items, Date alarmDate) {
         this.title = title;
         this.items = items;
         this.alarmDate = alarmDate;
@@ -24,10 +26,9 @@ public class ReminderList {
     public List<ReminderItem> items() {
         return items;
     }
-    public LocalDate getAlarmDate() {
+    public Date getAlarmDate() {
         return alarmDate;
     }
-
     public String toString() {
         return title + " " + items + " (" + alarmDate + ")";
     }
