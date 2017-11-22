@@ -11,6 +11,8 @@ import java.util.List;
 public class ReminderList {
     String title;
     List<ReminderItem> items;
+    List <ReminderTitle> titles;
+
     //LocalDate alarmDate;  TODO: find out if we can move up to API-level 26
     Date alarmDate;
 
@@ -19,6 +21,8 @@ public class ReminderList {
         this.items = items;
         this.alarmDate = alarmDate;
     }
+
+
 
     public String title() {
         return title;

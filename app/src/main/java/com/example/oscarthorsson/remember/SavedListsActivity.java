@@ -30,9 +30,9 @@ public class SavedListsActivity extends AppCompatActivity {
 
 public void view (){
     FakeReminderStore goran = FakeReminderStore.getInstance();
-    List<ReminderList> test = goran.getReminders();
+    List<ReminderTitle> test = goran.getReminderListTitles();
     ListView listView = findViewById(R.id.test);
-    ArrayAdapter adapter = new ArrayAdapter<ReminderList>(this,android.R.layout.activity_list_item,test);
+    ArrayAdapter adapter = new ArrayAdapter<ReminderTitle>(this,android.R.layout.simple_expandable_list_item_1,test);
     listView.setAdapter(adapter);
     listView.setOnItemClickListener(new ListView.OnItemClickListener(){
 
