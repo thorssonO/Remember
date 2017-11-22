@@ -4,8 +4,7 @@ import android.app.DatePickerDialog;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
+import android.text.InputFilter;;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,7 @@ public class AddRemActivity extends AppCompatActivity {
 
     public Button dateButton;
     //public LinearLayout parentLayout;
-    private int hint=0;
+    //private int hint=0;
 
     public Button addButton;
     public Button saveButton;
@@ -47,7 +46,6 @@ public class AddRemActivity extends AppCompatActivity {
             updateLabel(); // just logging the data for now.
         }
         //TODO använd TAG istället för ID på de Edittext som skapas dynamiskt
-
     };
 
     private void updateLabel() {
@@ -115,7 +113,6 @@ public class AddRemActivity extends AppCompatActivity {
         newEdit.requestFocus();
         layout.addView(newEdit);
     }
-
 }
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {

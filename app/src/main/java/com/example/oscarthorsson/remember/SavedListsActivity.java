@@ -25,7 +25,6 @@ public class SavedListsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_lists);
         view();
-        System.out.println("hej2");
     }
 
 

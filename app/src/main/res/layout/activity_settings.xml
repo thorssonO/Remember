@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.oscarthorsson.remember.SavedListsActivity">
-    
+    tools:context="com.example.oscarthorsson.remember.SettingsActivity">
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="500dp"
@@ -22,29 +23,5 @@
         app:srcCompat="@drawable/background_home" />
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="se.juneday.examples.listviewexample.MainActivity">
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="80dp"
-        android:layout_height="26dp"
-        android:text="@string/saved_lists"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="134dp"
-        tools:ignore="MissingConstraints" />
-
-        <ListView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-          />
-
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
