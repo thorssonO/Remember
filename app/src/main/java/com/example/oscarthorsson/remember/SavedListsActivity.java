@@ -1,5 +1,6 @@
 package com.example.oscarthorsson.remember;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,9 +40,14 @@ public void view (){
     @Override
     public void onItemClick(AdapterView <?> parent, final View view, int position, long id){
         Log.d(LOG_TAG, "item clicked, pos:" + position + " id: " + id);
+        Intent appInfo = new Intent(SavedListsActivity.this, OpenListActivity.class);
+        startActivity(appInfo);
+
 
         }
     });}
-}
+
+    }
+
 
 

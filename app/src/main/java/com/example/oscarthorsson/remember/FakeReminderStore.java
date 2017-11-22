@@ -17,7 +17,7 @@ public class FakeReminderStore
 
     List<ReminderList> reminders;
     List<ReminderItem> items;
-    List<ReminderTitle> titel;
+    List<ReminderTitle> titles;
 
     public static FakeReminderStore getInstance() {
         if (instance == null ) {
@@ -27,13 +27,16 @@ public class FakeReminderStore
     }
     private FakeReminderStore (){
         reminders= new ArrayList<>();
-        titel=new ArrayList<>();
+        titles=new ArrayList<>();
     }
 
     public void addReminderList(ReminderList list) {
         reminders.add(list);
     }
 
+    public void addTitle (ReminderTitle titles2){
+        titles.add(titles2);
+    }
     public List<ReminderList> getReminders(){
         return reminders;
     }
@@ -42,12 +45,10 @@ public class FakeReminderStore
         return items;
     }
 
-    public void addTitle (ReminderTitle title){
-        titel.add(title);
-    }
+
     public List <ReminderTitle> getReminderListTitles(){
 
-        return titel;
+        return titles;
     }
 
 }
