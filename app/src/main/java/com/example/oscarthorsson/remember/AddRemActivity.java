@@ -4,7 +4,7 @@ import android.app.DatePickerDialog;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;;
+import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -58,7 +58,7 @@ public class AddRemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rem);
-        dateButton =(Button)findViewById(R.id.dateButton);
+        dateButton = findViewById(R.id.dateButton);
         //parentLayout = (LinearLayout)findViewById(R.id.parentLayout);
         dateButton.setOnClickListener(new View.OnClickListener() {
 
@@ -87,7 +87,7 @@ public class AddRemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("Save button clicked - date: " + myCalendar);
                 System.out.println("save button - title: " + ((EditText)findViewById(R.id.titleText)).getText());
-                LinearLayout layout = (LinearLayout) findViewById(R.id.buttonLayout);
+                LinearLayout layout = findViewById(R.id.buttonLayout);
 
                 // TODO: find out how to find the edittext things added dynamically - I have no idea...
 
@@ -110,7 +110,7 @@ public class AddRemActivity extends AppCompatActivity {
     }
 
     protected void createEditTextView() {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.buttonLayout);
+        LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
         newEdit.setId(itemCount++);
         newEdit.requestFocus();
