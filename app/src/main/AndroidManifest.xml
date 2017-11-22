@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddRemActivity"></activity>
-        <activity android:name=".SavedListsActivity"></activity>
+        <activity android:name=".AddRemActivity" />
+        <activity android:name=".SavedListsActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
