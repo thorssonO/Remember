@@ -11,6 +11,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private Button newReminders;
     private Button savedReminders;
+    private Button settings;
 
     public void onClickNewRem(){
         newReminders = findViewById(R.id.newReminders);
@@ -36,12 +37,25 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickSettings(){
+        settings = findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Intent savedRemindersIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(savedRemindersIntent);
+            }
+        });
+    }
+
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home);
             onClickNewRem();
             onClickSavedReminders();
+            onClickSettings();
             //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
             //setSupportActionBar(settingsToolbar);
     }
