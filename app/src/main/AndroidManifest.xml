@@ -19,7 +19,8 @@
         <activity android:name=".AddRemActivity" />
         <activity android:name=".SavedListsActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".OpenListActivity"></activity>
+        <activity android:name=".OpenListActivity">
+        </activity>
     </application>
 
 </manifest>
