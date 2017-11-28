@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                Intent savedRemindersIntent = new Intent(HomeActivity.this, //SettingsActivity.class);
+                Intent savedRemindersIntent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(savedRemindersIntent);
             }
         });
