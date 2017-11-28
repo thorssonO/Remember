@@ -17,6 +17,7 @@ public class ReminderList {
     Date alarmDate;
 
     public ReminderList(String title, List<ReminderItem> items, Date alarmDate) {
+        super();
         this.title = title;
         this.items = items;
         this.alarmDate = alarmDate;

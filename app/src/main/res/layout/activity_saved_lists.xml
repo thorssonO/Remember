@@ -39,7 +39,7 @@
         tools:layout_editor_absoluteY="134dp"
         tools:ignore="MissingConstraints" />
 
-        <ListView
+        <ExpandableListView
             android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

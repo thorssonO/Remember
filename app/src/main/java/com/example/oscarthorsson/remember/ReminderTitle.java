@@ -5,10 +5,13 @@ package com.example.oscarthorsson.remember;
  */
 
 class ReminderTitle {
-    private String title;
+    String title;
 
     public ReminderTitle(String title) {
         this.title=title;
     }
 
+    public String toString() {
+        return title;
+    }
 }

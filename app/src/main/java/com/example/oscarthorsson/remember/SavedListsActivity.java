@@ -8,13 +8,21 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SavedListsActivity extends AppCompatActivity {
     private final String LOG_TAG = FakeReminderStore.class.getName();
+    private ExpandableListView listView;
+    private ExpandableListAdapter listAdapter;
+    private List <ReminderList> dataHeader;
+    private HashMap<String,List<String>> listHash;
+
     // skapa en ReminderSStore
     // be den om en lista mwd ReminderList-objekt
     // slång i den listam i "new ArrayAdapter"
@@ -31,11 +39,13 @@ public class SavedListsActivity extends AppCompatActivity {
 
 
 public void view (){
+
+
     FakeReminderStore goran = FakeReminderStore.getInstance();
-    List<ReminderTitle> test = goran.getReminderListTitles();
+    List<ReminderList> test = goran.getReminders();
     ListView listView = findViewById(R.id.test);
-    ArrayAdapter adapter = new ArrayAdapter<ReminderTitle>(this,android.R.layout.simple_expandable_list_item_1,test);
-    listView.setAdapter(adapter);
+    listAdapter = new ExpandableListAdapter(this,test, listHash);
+    listView.setAdapter(listAdapter);
     listView.setOnItemClickListener(new ListView.OnItemClickListener(){
 
     @Override

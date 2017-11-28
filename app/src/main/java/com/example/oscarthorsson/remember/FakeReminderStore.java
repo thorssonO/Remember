@@ -41,7 +41,8 @@ public class FakeReminderStore
         return reminders;
     }
 
-    public List<ReminderItem>getItems(){
+    public List<ReminderItem> getItems(){
+
         return items;
     }
 
@@ -49,6 +50,9 @@ public class FakeReminderStore
     public List <ReminderTitle> getReminderListTitles(){
 
         return titles;
+    }
+    public String toString() {
+        return titles + " " + items;
     }
 
 }

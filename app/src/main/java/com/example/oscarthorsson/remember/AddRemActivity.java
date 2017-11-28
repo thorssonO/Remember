@@ -99,8 +99,7 @@ public class AddRemActivity extends AppCompatActivity {
                 }
 
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
-                ReminderTitle remTitle= new ReminderTitle(title.toString());
-                System.out.println("New list: " + remTitle);
+                ReminderTitle remTitle= new ReminderTitle(title);
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
                 System.out.println("New list: " + remList);
                 FakeReminderStore.getInstance().addReminderList(remList);
