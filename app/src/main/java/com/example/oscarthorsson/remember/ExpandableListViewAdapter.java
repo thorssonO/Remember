@@ -15,7 +15,8 @@ import java.util.List;
  * Created by patsy on 2017-11-27.
  */
 
-class ExpandableListAdapter extends BaseExpandableListAdapter {
+class ExpandableListAdapter extends BaseExpandableListAdapter
+{
 
     private Context context;
     //List<ReminderList> reminders;

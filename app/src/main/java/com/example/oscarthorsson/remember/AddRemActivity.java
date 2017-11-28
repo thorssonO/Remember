@@ -87,6 +87,7 @@ public class AddRemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("Save button clicked - date: " + myCalendar);
                 System.out.println("save button - title: " + ((EditText)findViewById(R.id.titleText)).getText());
+                //Kollar bara så texten följer med när jag sparar
                 LinearLayout layout = findViewById(R.id.buttonLayout);
 
                 // TODO: find out how to find the edittext things added dynamically - I have no idea...
