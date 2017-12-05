@@ -2,10 +2,10 @@ package com.example.oscarthorsson.remember;
 
 import android.app.DatePickerDialog;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.util.TypedValue;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -22,12 +21,14 @@ import java.util.List;
 import java.util.Locale;
 
 
+
 public class AddRemActivity extends AppCompatActivity {
         //implements DatePickerDialog.OnDateSetListener
 
+    //undersök datepickerdialog
+
     public Button dateButton;
-    //public LinearLayout parentLayout;
-    //private int hint=0;
+
 
     public Button addButton;
     public Button saveButton;
@@ -105,9 +106,23 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("New list: " + remList);
                 FakeReminderStore.getInstance().addReminderList(remList);
                 FakeReminderStore.getInstance().addTitle(remTitle);
+
+
             }
         });
     }
+
+    /*public void onSaveBtn(View v) {
+        saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Intent but22 = new Intent(AddRemActivity.this, HomeActivity.class);
+                startActivity(but22);
+            }
+        });
+    }*/
 
     protected void createEditTextView() {
         LinearLayout layout = findViewById(R.id.buttonLayout);
@@ -117,20 +132,3 @@ public class AddRemActivity extends AppCompatActivity {
         layout.addView(newEdit);
     }
 }
-   /* @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_rem);
-
-        // Hämta ut add_reminder_button
-        // sätt en onClick-grej som hämtar ut name och alla
-        // items - dvs hämta och loopa över alla EditText som lagts till av
-        // add item-knappen, läs texten och skapa för varje en ReminderItem.
-        // Sedan skapar ni en ReminderList som tar som argument name och listan
-        // och alarmdate (ni måste lägga till en widget för datum).
-
-        //Skicka dem till en singleton (senare - lagra den i databas i stället)
-
-    }
-}
-*/

@@ -23,14 +23,8 @@ public class SavedListsActivity extends AppCompatActivity {
     private List <ReminderList> dataHeader;
     private HashMap<String,List<String>> listHash;
 
-    // skapa en ReminderSStore
-    // be den om en lista mwd ReminderList-objekt
-    // slång i den listam i "new ArrayAdapter"
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_lists);
 
@@ -38,8 +32,7 @@ public class SavedListsActivity extends AppCompatActivity {
     }
 
 
-public void view (){
-
+public void view(){
 
     FakeReminderStore goran = FakeReminderStore.getInstance();
     List<ReminderList> test = goran.getReminders();
@@ -49,16 +42,14 @@ public void view (){
     listView.setOnItemClickListener(new ListView.OnItemClickListener(){
 
     @Override
+
     public void onItemClick(AdapterView <?> parent, final View view, int position, long id){
         Log.d(LOG_TAG, "item clicked, pos:" + position + " id: " + id);
         Intent appInfo = new Intent(SavedListsActivity.this, OpenListActivity.class);
         startActivity(appInfo);
-
-
         }
     });}
-
-    }
+}
 
 
 
