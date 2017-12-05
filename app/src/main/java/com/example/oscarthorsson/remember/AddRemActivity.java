@@ -128,6 +128,7 @@ public class AddRemActivity extends AppCompatActivity {
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
         newEdit.setId(itemCount++);
+        newEdit.setHint("Reminder item:");
         newEdit.requestFocus();
         layout.addView(newEdit);
     }

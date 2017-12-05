@@ -14,7 +14,6 @@
     <string name="when">When</string>
     <string name="add_another">Add another</string>
     <string name="add_another_item">Add another item</string>
-    <string name="title_for_this_reminder">Title for this reminder</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
@@ -89,4 +88,6 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="notification_sound">Notification sound</string>
+    <string name="title">Title</string>
+    <string name="title_for_this_reminder">Title for this reminder:</string>
 </resources>
