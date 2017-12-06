@@ -36,9 +36,9 @@ public void view(){
 
     FakeReminderStore goran = FakeReminderStore.getInstance();
     List<ReminderList> test = goran.getReminders();
-    ListView listView = findViewById(R.id.test);
-    //listAdapter = new ExpandableListAdapter(this,test, listHash);
-    //listView.setAdapter(listAdapter);
+    ExpandableListView listView = findViewById(R.id.test);
+    listAdapter = new ExpandableListViewAdapter(this,test, listHash);
+    listView.setAdapter(listAdapter);
     listView.setOnItemClickListener(new ListView.OnItemClickListener(){
 
     @Override

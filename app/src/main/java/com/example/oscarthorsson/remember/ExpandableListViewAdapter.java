@@ -15,7 +15,7 @@ import java.util.List;
  * Created by patsy on 2017-11-27.
  */
 
-class ExpandableListAdapter extends BaseExpandableListAdapter
+public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 {
 
     private Context context;
@@ -24,7 +24,7 @@ class ExpandableListAdapter extends BaseExpandableListAdapter
     private HashMap<String,List<String>>listHashMap;
 
 
-    public ExpandableListAdapter(Context context, List<ReminderList>dataHeader,HashMap<String,List<String>>listHashMap){
+    public ExpandableListViewAdapter(Context context, List<ReminderList>dataHeader,HashMap<String,List<String>>listHashMap){
         this.context=context;
         this.dataHeader= dataHeader;
         this.listHashMap=listHashMap;
