@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -12,6 +13,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +23,7 @@ public class SavedListsActivity extends AppCompatActivity {
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
     private List <ReminderList> dataHeader;
-    private HashMap<String,List<String>> listHash;
+    private SparseArray <ReminderList> groups = new SparseArray<ReminderList>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class SavedListsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_saved_lists);
 
         view();
+        createData();
     }
 
 
@@ -37,18 +40,21 @@ public void view(){
     FakeReminderStore goran = FakeReminderStore.getInstance();
     List<ReminderList> test = goran.getReminders();
     ExpandableListView listView = findViewById(R.id.test);
-    listAdapter = new ExpandableListViewAdapter(this,test, listHash);
+    listAdapter = new ExpandableListViewAdapter(this,groups);
     listView.setAdapter(listAdapter);
-    listView.setOnItemClickListener(new ListView.OnItemClickListener(){
 
-    @Override
-
-    public void onItemClick(AdapterView <?> parent, final View view, int position, long id){
-        Log.d(LOG_TAG, "item clicked, pos:" + position + " id: " + id);
-        Intent appInfo = new Intent(SavedListsActivity.this, OpenListActivity.class);
-        startActivity(appInfo);
+    }
+    public void createData() {
+        for (int j = 0; j < 5; j++) {
+            FakeReminderStore itemsExpandable = FakeReminderStore.getInstance();
+            Group group = new Group("test"+j); {
+            };
+            for (int i = 0; i < 5; i++) {
+                Group
+            }
+            groups.append(j, group);
         }
-    });}
+    }
 }
 
 

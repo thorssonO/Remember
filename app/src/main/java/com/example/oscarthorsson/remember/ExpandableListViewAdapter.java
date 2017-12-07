@@ -1,12 +1,18 @@
 package com.example.oscarthorsson.remember;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.os.RemoteException;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,85 +24,100 @@ import java.util.List;
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 {
 
-    private Context context;
+    public Activity activity;
+    public LayoutInflater inflater;
     //List<ReminderList> reminders;
-    private List<ReminderList>dataHeader;
-    private HashMap<String,List<String>>listHashMap;
+    private final SparseArray<ReminderList> groups;
 
 
-    public ExpandableListViewAdapter(Context context, List<ReminderList>dataHeader,HashMap<String,List<String>>listHashMap){
-        this.context=context;
-        this.dataHeader= dataHeader;
-        this.listHashMap=listHashMap;
+
+    public ExpandableListViewAdapter(Activity act, SparseArray <ReminderList> groups){
+        activity = act;
+        inflater = act.getLayoutInflater();
+        this.groups=groups;
 
     }
 
     @Override
     public int getGroupCount(){
-        return dataHeader.size();
+        return groups.size();
 
     }
 
     @Override
-    public int getChildrenCount(int i) {
-        return listHashMap.get(dataHeader.get(i)).size();
+    public int getChildrenCount(int groupPosition) {
+        return groups.get(groupPosition);
     }
 
     @Override
-    public Object getGroup(int i) {
-        return dataHeader.get(i);
+    public Object getGroup(int groupPosition) {
+        return groups.get(groupPosition);
     }
 
     @Override
-    public Object getChild(int i, int i1) {
-        return listHashMap.get(dataHeader.get(i)).get(i1);
+    public Object getChild(int groupPosition, int childPosition) {
+        return groups.get(groupPosition).childern.get(childPosition);
     }
 
     @Override
-    public long getGroupId(int i) {
-        return i;
+    public long getGroupId(int groupPosition) {
+        return 0;
     }
 
     @Override
-    public long getChildId(int i, int i1) {
-        return i1;
+    public long getChildId(int groupPosition, int childPosition) {
+        return 0;
     }
 
     @Override
     public boolean hasStableIds() {
         return false;
     }
-
     @Override
-    public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        String headerTitle = (String) getGroup(i);
-        if(view == null){
-            LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_group,null);
+    public void onGroupCollapsed (int groupPosition){
+        super.onGroupCollapsed(groupPosition);
+    }
+    @Override
+    public void onGroupExpanded(int groupPosition){
+        super.onGroupExpanded(groupPosition);
+    }
+    @Override
+    public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
+       final String children = (String) getChild(groupPosition, childPosition);
+       TextView text = null;
+       if(convertView == null){
+            convertView = inflater.inflate(R.layout.list_group,null);
         }
-        TextView lblListHeader = view.findViewById(R.id.lblListHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
-        return view;
+        text = (TextView) convertView.findViewById(R.id.textView1);
+        text.setText(children);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activity,children, Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+        return convertView;
     }
 
     @Override
-    public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        final String childText = (String)getChild(i,i1);
-        if (view == null) {
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-            LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item,null);
+        if (convertView == null) {
+
+            convertView = inflater.inflate(R.layout.list_group,null);
 
         }
-        TextView txtListChild = view.findViewById(R.id.lblListItem);
-        txtListChild.setText(childText);
-        return view;
+       ReminderList group = (ReminderList) getGroup (groupPosition);
+        ((CheckedTextView) convertView). setText(group.toString());
+        ((CheckedTextView)convertView). setChecked(isExpanded);
+        return convertView;
     }
 
     @Override
-    public boolean isChildSelectable(int i, int i1) {
-        return true;
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return false;
     }
 
 
