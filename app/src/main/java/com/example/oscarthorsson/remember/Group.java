@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public class Group {
+
     public String string;
     public final List<String> children = new ArrayList<String>();
 
@@ -18,7 +19,7 @@ public class Group {
     public String toString (List<String> children)
     {   FakeReminderStore childrenString = FakeReminderStore.getInstance();
         List<ReminderItem> testChildren = childrenString.getItems();
-        return""+ testChildren;
+        return" "+ testChildren;
 
     }
 }
