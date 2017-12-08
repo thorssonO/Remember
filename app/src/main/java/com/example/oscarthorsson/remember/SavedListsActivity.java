@@ -48,7 +48,7 @@ public void view(){
         for (int j = 0; j < 5; j++) {
             FakeReminderStore itemsExpandable = FakeReminderStore.getInstance();
             Group group = new Group("test"+j); {
-            };
+            }
             for (int i = 0; i < 5; i++) {
                 Group
             }
