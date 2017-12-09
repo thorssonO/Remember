@@ -2,10 +2,6 @@ package com.example.oscarthorsson.remember;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Typeface;
-import android.os.RemoteException;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by patsy on 2017-11-27.
@@ -24,39 +21,38 @@ import java.util.List;
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 {
 
-    public Activity activity;
+    public Context context;
     public LayoutInflater inflater;
-    //List<ReminderList> reminders;
-    private final SparseArray<ReminderList> groups;
+    private List <ReminderList> dataHeader;
+    private HashMap<List<ReminderList>, List<String>> theHashMap = new HashMap<List<ReminderList>, List<String>>();
 
 
-
-    public ExpandableListViewAdapter(Activity act, SparseArray <ReminderList> groups){
-        activity = act;
-        inflater = act.getLayoutInflater();
-        this.groups=groups;
+    public ExpandableListViewAdapter(Context context, List<ReminderList> dataHeader, HashMap<List<ReminderList>, List<String>> theHashMap){
+        this.context = context;
+        this.theHashMap= theHashMap;
+        this.dataHeader=dataHeader;
 
     }
 
     @Override
     public int getGroupCount(){
-        return groups.size();
+        return theHashMap.size();
 
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return groups.get(groupPosition);
+        return this.theHashMap.get(this.dataHeader.get(groupPosition)).size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groups.get(groupPosition);
+        return theHashMap.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return groups.get(groupPosition).childern.get(childPosition);
+        return this.theHashMap.get(this.dataHeader.get(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -93,7 +89,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity,children, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,children, Toast.LENGTH_SHORT).show();
 
             }
 
