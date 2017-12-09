@@ -1,6 +1,11 @@
 package com.example.oscarthorsson.remember;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button newReminders;
     private Button savedReminders;
     private Button settings;
+    private Context context;
 
     public void onClickNewRem(){
         newReminders = findViewById(R.id.newReminders);
@@ -49,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -58,5 +65,11 @@ public class HomeActivity extends AppCompatActivity {
             onClickSettings();
             //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
             //setSupportActionBar(settingsToolbar);
+
+            BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
+            context.registerReceiver(broadcastReceiver, intentFilter);
+
     }
 }
