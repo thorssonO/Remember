@@ -2,9 +2,6 @@ package com.example.oscarthorsson.remember;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Typeface;
-import android.os.RemoteException;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,23 +26,21 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     private final SparseArray<ReminderList> groups;
 
 
-
     public ExpandableListViewAdapter(Activity act, SparseArray <ReminderList> groups){
         activity = act;
         inflater = act.getLayoutInflater();
         this.groups=groups;
-
     }
 
     @Override
     public int getGroupCount(){
         return groups.size();
-
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return groups.get(groupPosition);
+    //    return groups.get(groupPosition);
+        return 0;
     }
 
     @Override
@@ -56,7 +50,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return groups.get(groupPosition).children.get(childPosition);
+    //    return groups.get(groupPosition).children.get(childPosition);
+        return 0;
     }
 
     @Override
@@ -73,14 +68,17 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public boolean hasStableIds() {
         return false;
     }
+
     @Override
     public void onGroupCollapsed (int groupPosition){
         super.onGroupCollapsed(groupPosition);
     }
+
     @Override
     public void onGroupExpanded(int groupPosition){
         super.onGroupExpanded(groupPosition);
     }
+
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
        final String children = (String) getChild(groupPosition, childPosition);
@@ -91,12 +89,11 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         text = convertView.findViewById(R.id.textView1);
         text.setText(children);
         convertView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity,children, Toast.LENGTH_SHORT).show();
-
             }
-
         });
         return convertView;
     }
@@ -119,6 +116,4 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
-
-
 }

@@ -2,7 +2,6 @@ package com.example.oscarthorsson.remember;
 
 import android.app.DatePickerDialog;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -13,8 +12,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +41,7 @@ public class AddRemActivity extends AppCompatActivity {
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel(); // just logging the data for now.
+            updateLabel(); //Används inte till mer än att se till att datumet följer med
         }
         //TODO använd TAG istället för ID på de Edittext som skapas dynamiskt
     };
@@ -60,7 +57,6 @@ public class AddRemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rem);
         dateButton = findViewById(R.id.dateButton);
-        //parentLayout = (LinearLayout)findViewById(R.id.parentLayout);
         dateButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -86,8 +82,8 @@ public class AddRemActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                System.out.println("Save button clicked - date: " + myCalendar);
-                System.out.println("save button - title: " + ((EditText)findViewById(R.id.titleText)).getText());
+                System.out.println("date saved: " + myCalendar);
+                System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så texten följer med när jag sparar
                 LinearLayout layout = findViewById(R.id.buttonLayout);
 
@@ -103,11 +99,9 @@ public class AddRemActivity extends AppCompatActivity {
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
                 ReminderTitle remTitle= new ReminderTitle(title);
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
-                System.out.println("New list: " + remList);
                 FakeReminderStore.getInstance().addReminderList(remList);
                 FakeReminderStore.getInstance().addTitle(remTitle);
-
-
+                System.out.println("New list: " + remList);
             }
         });
     }
@@ -124,6 +118,7 @@ public class AddRemActivity extends AppCompatActivity {
         });
     }*/
 
+    //Metod för att lägga till nya edittexts i linearlayouten.
     protected void createEditTextView() {
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);

@@ -1,7 +1,5 @@
 package com.example.oscarthorsson.remember;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,22 +22,21 @@ public class ReminderList {
         this.alarmDate = alarmDate;
     }
 
-
-
     public String title() {
         return title;
     }
+
     public List<ReminderItem> items() {
         return items;
     }
+
     public Date getAlarmDate() {
         return alarmDate;
     }
+
     public String toString() {
         return title + " " + items + " (" + alarmDate + ")";
     }
-
-    // Maybe a method which returns a List<ReminderItem> with the unchecked items
 
     public boolean areAllItemsChecked() {
         for(ReminderItem item : items) {

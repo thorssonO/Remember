@@ -1,21 +1,15 @@
 package com.example.oscarthorsson.remember;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
-import java.security.acl.Group;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SavedListsActivity extends AppCompatActivity {
@@ -47,15 +41,14 @@ public void view(){
     public void createData() {
         for (int j = 0; j < 5; j++) {
             FakeReminderStore itemsExpandable = FakeReminderStore.getInstance();
-            Group group = new Group("test"+j); {
+            //Group group = new Group("test"+j); {
             }
             for (int i = 0; i < 5; i++) {
-                Group
+                //Group;
             }
-            groups.append(j, group);
+            //groups.append(j, group);
         }
     }
-}
 
 
 
