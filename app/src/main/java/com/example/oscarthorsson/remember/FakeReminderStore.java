@@ -54,5 +54,8 @@ public class FakeReminderStore
     public String toString() {
         return titles + " " + items;
     }
+    public String toStringTitel() {
+        return ""+titles;
+    }
 
 }

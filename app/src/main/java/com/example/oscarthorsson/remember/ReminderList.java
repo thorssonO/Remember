@@ -35,7 +35,7 @@ public class ReminderList {
     }
 
     public String toString() {
-        return title + " " + items + " (" + alarmDate + ")";
+        return  ""+title+""+ items+""+alarmDate;
     }
 
     public boolean areAllItemsChecked() {
