@@ -36,7 +36,7 @@ public class ReminderList {
         return alarmDate;
     }
     public String toString() {
-        return title + " " + items + " (" + alarmDate + ")";
+        return  ""+title+""+ items+""+alarmDate;
     }
 
     // Maybe a method which returns a List<ReminderItem> with the unchecked items

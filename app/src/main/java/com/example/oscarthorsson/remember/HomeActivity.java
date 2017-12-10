@@ -4,13 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toolbar;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -49,8 +48,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                Intent savedRemindersIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(savedRemindersIntent);
+                Intent savedRemindersIntent2 = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(savedRemindersIntent2);
             }
         });
     }
@@ -66,10 +65,10 @@ public class HomeActivity extends AppCompatActivity {
             //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
             //setSupportActionBar(settingsToolbar);
 
-            BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
+           /* BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
-            context.registerReceiver(broadcastReceiver, intentFilter);
+            context.registerReceiver(broadcastReceiver, intentFilter);*/
 
     }
 }

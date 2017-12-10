@@ -1,18 +1,18 @@
 package com.example.oscarthorsson.remember;
 
-import android.app.Activity;
+
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+
 
 /**
  * Created by patsy on 2017-11-27.
@@ -20,14 +20,13 @@ import java.util.Objects;
 
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 {
-
+    public LayoutInflater infalInflater;
     public Context context;
-    public LayoutInflater inflater;
-    private List <ReminderList> dataHeader;
-    private HashMap<List<ReminderList>, List<String>> theHashMap = new HashMap<List<ReminderList>, List<String>>();
+    public ArrayList<String> dataHeader;
+    HashMap<String, List<ReminderList>> theHashMap = new HashMap<String, List<ReminderList>>();
 
 
-    public ExpandableListViewAdapter(Context context, List<ReminderList> dataHeader, HashMap<List<ReminderList>, List<String>> theHashMap){
+    public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, List<ReminderList>> theHashMap){
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
@@ -36,7 +35,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getGroupCount(){
-        return theHashMap.size();
+        return dataHeader.size();
 
     }
 
@@ -47,17 +46,19 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getGroup(int groupPosition) {
-        return theHashMap.get(groupPosition);
+        return dataHeader.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
+
+
         return this.theHashMap.get(this.dataHeader.get(groupPosition)).get(childPosition);
     }
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override
@@ -79,41 +80,36 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     }
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
-       final String children = (String) getChild(groupPosition, childPosition);
-       TextView text = null;
+
+        final String childText = (String) getChild(groupPosition, childPosition);
+       TextView text;
        if(convertView == null){
-            convertView = inflater.inflate(R.layout.list_group,null);
+
+           infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+           convertView = infalInflater.inflate(R.layout.list_item,null);
         }
-        text = (TextView) convertView.findViewById(R.id.textView1);
-        text.setText(children);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,children, Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
+        text = convertView.findViewById(R.id.lblListItem);
+        text.setText(childText);
         return convertView;
     }
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-
+    String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
-
-            convertView = inflater.inflate(R.layout.list_group,null);
+            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_group,null);
 
         }
-       ReminderList group = (ReminderList) getGroup (groupPosition);
-        ((CheckedTextView) convertView). setText(group.toString());
-        ((CheckedTextView)convertView). setChecked(isExpanded);
+       TextView lblListHeader = convertView. findViewById(R.id.header);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
 
