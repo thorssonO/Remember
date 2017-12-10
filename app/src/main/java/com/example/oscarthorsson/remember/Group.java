@@ -15,5 +15,5 @@ public class Group {
     public Group(String string){ this.string=string;
 
     }
-    }
+}
 

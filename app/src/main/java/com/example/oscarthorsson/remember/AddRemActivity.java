@@ -118,6 +118,8 @@ public class AddRemActivity extends AppCompatActivity {
         });
     }*/
 
+    //Måste fixa ovanstående kod så den för anävndaren till startsidan efter "save"
+
     //Metod för att lägga till nya edittexts i linearlayouten.
     protected void createEditTextView() {
         LinearLayout layout = findViewById(R.id.buttonLayout);
