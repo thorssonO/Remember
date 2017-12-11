@@ -15,7 +15,9 @@ class ReminderItem {
     public ReminderItem(String name) {
         this.name = name;
     }
-
+    public String name() {
+        return name;
+    }
     public boolean isChecked() {
         /*String query = "select item_Status";
         Statement ItemS= null;

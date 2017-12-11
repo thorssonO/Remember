@@ -23,10 +23,10 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public LayoutInflater infalInflater;
     public Context context;
     public ArrayList<String> dataHeader;
-    HashMap<String, List<ReminderList>> theHashMap = new HashMap<String, List<ReminderList>>();
+    HashMap<String, ReminderList> theHashMap = new HashMap<String, ReminderList>();
 
 
-    public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, List<ReminderList>> theHashMap){
+    public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, ReminderList> theHashMap){
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
@@ -41,7 +41,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.theHashMap.get(this.dataHeader.get(groupPosition)).size();
+        return this.theHashMap.get(this.dataHeader.get(groupPosition)).items().size();
     }
 
     @Override
@@ -52,8 +52,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     @Override
     public Object getChild(int groupPosition, int childPosition) {
 
-
-        return this.theHashMap.get(this.dataHeader.get(groupPosition)).get(childPosition);
+        //System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
+        return theHashMap.get(this.dataHeader.get(groupPosition)).items().get(childPosition);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     }
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
-
-        final String childText = (String) getChild(groupPosition, childPosition);
+        ReminderItem item = (ReminderItem)getChild(groupPosition, childPosition);
+        String childText =  item.name();
        TextView text;
        if(convertView == null){
 

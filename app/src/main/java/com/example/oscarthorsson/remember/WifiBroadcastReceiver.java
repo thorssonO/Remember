@@ -29,12 +29,12 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
 
             if (SupplicantState.isValidState(state)
                     && state == SupplicantState.COMPLETED) {
-                connected = checkConnectedToWifi();
+                //connected = checkConnectedToWifi();
             }
         }
     }
 
-    private boolean checkConnectedToWifi() {
+    /*private boolean checkConnectedToWifi() {
 
         macAddress = "Mac-adressen";
         WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
@@ -48,7 +48,7 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
         }
         System.out.println("Macadressen är: " + bssid);
         return connected;
-    }
+    }*/
 }
 
 
