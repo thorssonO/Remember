@@ -2,6 +2,7 @@ package com.example.oscarthorsson.remember;
 
 import android.app.DatePickerDialog;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -83,9 +84,13 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så texten följer med när jag sparar
 
+                //följade är så att användaren återvänder till homeactivity efter sparad remider
+                Intent homeIntent = new Intent(AddRemActivity.this, HomeActivity.class);
+                startActivity(homeIntent);
+
                 LinearLayout layout = findViewById(R.id.buttonLayout);
 
-                // TODO: find out how to find the edittext things added dynamically - I have no idea...
+                // TODO: ta reda på hur man hittar de nyskapade edittextena, krashar efter mer än en lista
 
                 List<ReminderItem> remItems = new ArrayList<>();
                 for (int i = 0; i < itemCount; i++) {

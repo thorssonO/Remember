@@ -30,15 +30,6 @@
         tools:context="se.juneday.examples.listviewexample.MainActivity">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="80dp"
-        android:layout_height="26dp"
-        android:text="@string/saved_lists"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="134dp"
-        tools:ignore="MissingConstraints" />
-
         <ExpandableListView
             android:id="@+id/test"
             android:layout_width="match_parent"
