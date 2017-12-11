@@ -90,4 +90,5 @@
     <string name="notification_sound">Notification sound</string>
     <string name="title">Title</string>
     <string name="title_for_this_reminder">Title for this reminder:</string>
+    <string name="network_preferences">Network preferences</string>
 </resources>

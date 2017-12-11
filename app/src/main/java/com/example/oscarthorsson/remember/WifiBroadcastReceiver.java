@@ -19,14 +19,17 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     private String macAddress;
     private String bssid;
     private String action;
-    private EditText text;
+    //private EditText text;
 
+
+    //Konstruktor behövs inte
 /*
     public WifiBroadcastReceiver(Context context) {
         this.context = context;
     }
 */
     @Override
+    //Kallas på från Homeactivity
     public void onReceive(Context context, Intent intent) {
 
         action = intent.getAction();
@@ -41,6 +44,7 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
+    //Kallas på från Homeactivity, via onReceive()
     private boolean checkConnectedToWifi(Context context) {
 
         macAddress = "Mac-adressen";
@@ -51,11 +55,13 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
 
             bssid = wifi.getBSSID();
             //Sparar macadressen i strängen
+
             connected = macAddress.equals(bssid);
         }
 
         System.out.println("Macadressen är: " + bssid);
-        //För att se om vi faktikst får med bssid
+        //För att se om vi faktiskt får med bssid
+
         return connected;
     }
 }
