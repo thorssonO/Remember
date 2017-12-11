@@ -84,8 +84,5 @@ public class HomeActivity extends AppCompatActivity {
         broadcast.onReceive(this, getIntent());
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         this.registerReceiver(broadcast, intentFilter);
-
     }
-
-
 }

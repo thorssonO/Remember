@@ -36,7 +36,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     @Override
     public int getGroupCount(){
         return dataHeader.size();
-
     }
 
     @Override
@@ -51,8 +50,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-
-
         return this.theHashMap.get(this.dataHeader.get(groupPosition)).get(childPosition);
     }
 
@@ -78,6 +75,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public void onGroupExpanded(int groupPosition){
         super.onGroupExpanded(groupPosition);
     }
+
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
 

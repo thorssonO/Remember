@@ -17,8 +17,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-
-
 public class AddRemActivity extends AppCompatActivity {
         //implements DatePickerDialog.OnDateSetListener
 
