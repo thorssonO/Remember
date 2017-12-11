@@ -1,9 +1,7 @@
 package com.example.oscarthorsson.remember;
 
-
 import android.support.constraint.solver.LinearSystem;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +35,7 @@ public class FakeReminderStore
     public void addTitle (ReminderTitle titles2){
         titles.add(titles2);
     }
+
     public List<ReminderList> getReminders(){
         return reminders;
     }
@@ -46,7 +45,6 @@ public class FakeReminderStore
         return items;
     }
 
-
     public List <ReminderTitle> getReminderListTitles(){
 
         return titles;
@@ -54,6 +52,7 @@ public class FakeReminderStore
     public String toString() {
         return titles + " " + items;
     }
+
     public String toStringTitel() {
         return ""+titles;
     }

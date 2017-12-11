@@ -16,6 +16,7 @@ public class OpenListActivity extends AppCompatActivity {
         showList();
     }
 
+
     public void showList(){
         FakeReminderStore sara = FakeReminderStore.getInstance();
         List<ReminderList> test = sara.getReminders();

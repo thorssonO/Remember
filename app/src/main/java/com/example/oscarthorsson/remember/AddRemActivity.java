@@ -17,15 +17,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-
-
 public class AddRemActivity extends AppCompatActivity {
         //implements DatePickerDialog.OnDateSetListener
 
     //undersök datepickerdialog
 
     public Button dateButton;
-
 
     public Button addButton;
     public Button saveButton;
@@ -85,6 +82,7 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("date saved: " + myCalendar);
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så texten följer med när jag sparar
+
                 LinearLayout layout = findViewById(R.id.buttonLayout);
 
                 // TODO: find out how to find the edittext things added dynamically - I have no idea...
@@ -104,6 +102,8 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("New list: " + remList);
             }
         });
+
+
     }
 
     /*public void onSaveBtn(View v) {

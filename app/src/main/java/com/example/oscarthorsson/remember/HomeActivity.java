@@ -57,26 +57,26 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-        //Ovan skall (?) användas för bakåt och settingsikon i en ActionBar
+    public void showBSSID(){
+        text = findViewById(R.id.editBssid);
 
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_home);
-            onClickNewRem();
-            onClickSavedReminders();
-            onClickSettings();
-            //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
-            //setSupportActionBar(settingsToolbar);
+    }
 
-           /* BroadcastReceiver broadcastReceiver = new WifiBroadcastReceiver();
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
-            context.registerReceiver(broadcastReceiver, intentFilter);*/
+    //Ovan skall (?) användas för bakåt och settingsikon i en ActionBar
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        onClickNewRem();
+        onClickSavedReminders();
+        onClickSettings();
+        //Toolbar settingsToolbar = (Toolbar) findViewById(R.id.settings_toolbar);
+        //setSupportActionBar(settingsToolbar);
+
+        //ToolBar: använda möjligen senare
     }
 
     protected void onStart() {
         super.onStart();
-
         BroadcastReceiver broadcast = new WifiBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         //WifiBroadcastReceiver broad = new WifiBroadcastReceiver();
@@ -85,7 +85,16 @@ public class HomeActivity extends AppCompatActivity {
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         this.registerReceiver(broadcast, intentFilter);
 
+        showBSSID();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -18,37 +18,50 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     private boolean connected = false;
     private String macAddress;
     private String bssid;
-    private EditText text;
+    private String action;
+    //private EditText text;
 
+
+    //Konstruktor behövs inte
+/*
+    public WifiBroadcastReceiver(Context context) {
+        this.context = context;
+    }
+*/
     @Override
+    //Kallas på från Homeactivity
     public void onReceive(Context context, Intent intent) {
-        String action = intent.getAction();
+
+        action = intent.getAction();
 
         if (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION .equals(action)) {
             SupplicantState state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
 
             if (SupplicantState.isValidState(state)
                     && state == SupplicantState.COMPLETED) {
-                //connected = checkConnectedToWifi();
+                connected = checkConnectedToWifi(context);
             }
         }
     }
 
-    /*private boolean checkConnectedToWifi() {
+    //Kallas på från Homeactivity, via onReceive()
+    private boolean checkConnectedToWifi(Context context) {
 
         macAddress = "Mac-adressen";
-        WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager)context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifi = wifiManager.getConnectionInfo();
 
         if (wifi != null) {
 
             bssid = wifi.getBSSID();
             //Sparar macadressen i strängen
+
             connected = macAddress.equals(bssid);
         }
+
         System.out.println("Macadressen är: " + bssid);
+        //För att se om vi faktiskt får med bssid
+
         return connected;
-    }*/
+    }
 }
-
-
