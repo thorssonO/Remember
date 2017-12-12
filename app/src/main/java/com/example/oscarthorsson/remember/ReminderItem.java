@@ -11,12 +11,21 @@ import java.time.LocalDate;
 class ReminderItem {
     private String name;
     boolean isChecked;
+    boolean Selected=true;
 
     public ReminderItem(String name) {
         this.name = name;
+
     }
     public String name() {
         return name;
+    }
+    public boolean isSelected(){
+        return Selected;
+
+    }
+    public void setSelected(boolean selected){
+        this.Selected= Selected;
     }
     public boolean isChecked() {
         /*String query = "select item_Status";

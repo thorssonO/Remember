@@ -3,11 +3,16 @@ package com.example.oscarthorsson.remember;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.widget.CompoundButtonCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,13 +88,33 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         ReminderItem item = (ReminderItem)getChild(groupPosition, childPosition);
         String childText =  item.name();
        TextView text;
+
        if(convertView == null){
 
            infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
            convertView = infalInflater.inflate(R.layout.list_item,null);
+
+        final viewHolder childHolder = new viewHolder();
+        childHolder.cd= (CheckBox) convertView.findViewById(R.id.checkBox);
+       childHolder.cd.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+       @Override
+            public void onCheckedChanged(CompoundButton button, boolean isChecked){
+           ReminderItem itemCheck = (ReminderItem) childHolder.cd.getTag();
+           itemCheck.setSelected(button.isChecked());
         }
-        text = convertView.findViewById(R.id.lblListItem);
-        text.setText(childText);
+               });
+
+        convertView.setTag(childHolder);
+        childHolder.cd.setTag(item);
+    }else{
+            convertView = convertView;
+            ((viewHolder)convertView.getTag()).cd.setTag(item.name());
+        }
+
+        viewHolder holder = (viewHolder) convertView.getTag();
+       holder.cd.setChecked (item.isSelected());
+        holder.cd.setText (item.name());
+
         return convertView;
     }
 
