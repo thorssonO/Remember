@@ -15,8 +15,8 @@ import static android.media.CamcorderProfile.get;
 
 public class SavedListsActivity extends AppCompatActivity {
     ExpandableListAdapter listAdapter;
-     ArrayList <String> dataHeader;
-     HashMap<String, ReminderList> theHashMap = new HashMap<>();
+    ArrayList <String> dataHeader;
+    HashMap<String, ReminderList> theHashMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +40,18 @@ public class SavedListsActivity extends AppCompatActivity {
        }
        */
 
-view();
+        view();
     }
 
-public void view(){
+    public void view(){
 
-    ExpandableListView listView = findViewById(R.id.test);
-    listAdapter = new ExpandableListViewAdapter(this,dataHeader,theHashMap);
-    listView.setAdapter(listAdapter);
+        ExpandableListView listView = findViewById(R.id.test);
+        listAdapter = new ExpandableListViewAdapter(this,dataHeader,theHashMap);
+        listView.setAdapter(listAdapter);
 
 
+    }
 }
-    }
 
 
 

@@ -4,6 +4,12 @@
     android:layout_height="55dip"
     android:orientation="vertical">
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/check"
+        />
+
     <TextView
         android:id="@+id/lblListItem"
         android:textSize="16sp"

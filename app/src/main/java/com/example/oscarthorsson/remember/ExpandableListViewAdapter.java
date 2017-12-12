@@ -36,6 +36,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
 
+
+
     }
 
     @Override
@@ -85,48 +87,50 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     }
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
+
         ReminderItem item = (ReminderItem)getChild(groupPosition, childPosition);
-        String childText =  item.name();
-       TextView text;
 
-       if(convertView == null){
 
-           infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           convertView = infalInflater.inflate(R.layout.list_item,null);
+        //View view;
 
-        final ViewHolder childHolder = new ViewHolder();
-        childHolder.cd= (CheckBox) convertView.findViewById(R.id.checkBox);
-       childHolder.cd.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-       @Override
-            public void onCheckedChanged(CompoundButton button, boolean isChecked){
-           ReminderItem itemCheck = (ReminderItem) childHolder.cd.getTag();
-           itemCheck.setSelected(button.isChecked());
+        if(convertView == null){
+
+            infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_item,null);
+
+            final ViewHolder childHolder = new ViewHolder();
+            childHolder.cd= (CheckBox) convertView.findViewById(R.id.check);
+
+            childHolder.cd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+                @Override
+                public void onCheckedChanged(CompoundButton button, boolean isChecked){
+                    ReminderItem itemCheck = (ReminderItem)childHolder.cd.getTag();
+                    itemCheck.setSelected(button.isChecked());
+                }
+            });
+
+            convertView.setTag(childHolder);
+            childHolder.cd.setTag(item);
         }
-               });
 
-        convertView.setTag(childHolder);
-        childHolder.cd.setTag(item);
-    }else{
-            convertView = convertView;
-            ((ViewHolder)convertView.getTag()).cd.setTag(item.name());
-        }
+            //((ViewHolder)convertView.getTag()).cd.setTag(childText);
+
+
 
         ViewHolder holder = (ViewHolder) convertView.getTag();
-       holder.cd.setChecked (item.isSelected());
+        holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.name());
-
         return convertView;
     }
-
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-    String headerTitle = (String) getGroup(groupPosition);
+        String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group,null);
 
         }
-       TextView lblListHeader = convertView. findViewById(R.id.header);
+        TextView lblListHeader = convertView. findViewById(R.id.header);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
         return convertView;
