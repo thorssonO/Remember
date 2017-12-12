@@ -94,7 +94,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
            infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
            convertView = infalInflater.inflate(R.layout.list_item,null);
 
-        final viewHolder childHolder = new viewHolder();
+        final ViewHolder childHolder = new ViewHolder();
         childHolder.cd= (CheckBox) convertView.findViewById(R.id.checkBox);
        childHolder.cd.setOnCheckedChangeListener(new OnCheckedChangeListener(){
        @Override
@@ -108,10 +108,10 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         childHolder.cd.setTag(item);
     }else{
             convertView = convertView;
-            ((viewHolder)convertView.getTag()).cd.setTag(item.name());
+            ((ViewHolder)convertView.getTag()).cd.setTag(item.name());
         }
 
-        viewHolder holder = (viewHolder) convertView.getTag();
+        ViewHolder holder = (ViewHolder) convertView.getTag();
        holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.name());
 
