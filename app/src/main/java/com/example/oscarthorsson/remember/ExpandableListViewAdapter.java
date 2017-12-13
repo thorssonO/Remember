@@ -108,9 +108,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         }
 
             //((ViewHolder)convertView.getTag()).cd.setTag(childText);
-
-
-
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.name());
