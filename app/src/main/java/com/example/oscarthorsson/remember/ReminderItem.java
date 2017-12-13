@@ -17,7 +17,7 @@ class ReminderItem {
         this.name = name;
 
     }
-    public String name() {
+    public String getItemName() {
         return name;
     }
     public boolean isSelected(){
@@ -27,6 +27,7 @@ class ReminderItem {
     public void setSelected(boolean selected){
         this.Selected= Selected;
     }
+
     public boolean isChecked() {
         /*String query = "select item_Status";
         Statement ItemS= null;

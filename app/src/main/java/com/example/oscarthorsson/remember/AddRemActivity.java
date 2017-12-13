@@ -28,7 +28,7 @@ public class AddRemActivity extends AppCompatActivity {
     public Button addButton;
     public Button saveButton;
     static int itemCount = 0;
-
+    ReminderDBHandler reminderDBHandler;
     Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -52,6 +52,8 @@ public class AddRemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+         reminderDBHandler= new ReminderDBHandler(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rem);
         dateButton = findViewById(R.id.dateButton);
@@ -84,7 +86,7 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så texten följer med när jag sparar
 
-                //följade är så att användaren återvänder till homeactivity efter sparad reminder
+                //Följande är så att användaren återvänder till homeactivity efter sparad reminder
                 Intent homeIntent = new Intent(AddRemActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
 
@@ -108,8 +110,13 @@ public class AddRemActivity extends AppCompatActivity {
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
                 ReminderTitle remTitle= new ReminderTitle(title);
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
+                //String time = myCalendar.getTime();
                 FakeReminderStore.getInstance().addReminderList(remList);
                 FakeReminderStore.getInstance().addTitle(remTitle);
+
+                reminderDBHandler.addReminderData(new ReminderList(title));
+                reminderDBHandler.addReminderItemData(new ReminderItem(remItem()));
+
                 System.out.println("New list: " + remList);
             }
         });
