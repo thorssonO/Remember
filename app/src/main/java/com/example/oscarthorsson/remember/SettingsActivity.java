@@ -16,6 +16,8 @@ import android.support.v4.app.NavUtils;
 
 import java.util.List;
 
+//En av android studios standaredaktiviteer fast där vi tagit bort mycket kod från.
+
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {

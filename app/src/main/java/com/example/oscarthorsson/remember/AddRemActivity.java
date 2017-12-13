@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AddRemActivity extends AppCompatActivity {
-        //implements DatePickerDialog.OnDateSetListener
+    //implements DatePickerDialog.OnDateSetListener
 
     //undersök datepickerdialog
 
@@ -84,7 +84,7 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så texten följer med när jag sparar
 
-                //följade är så att användaren återvänder till homeactivity efter sparad remider
+                //följade är så att användaren återvänder till homeactivity efter sparad reminder
                 Intent homeIntent = new Intent(AddRemActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
 
@@ -92,11 +92,17 @@ public class AddRemActivity extends AppCompatActivity {
 
                 // TODO: ta reda på hur man hittar de nyskapade edittextena, krashar efter mer än en lista
 
+
                 List<ReminderItem> remItems = new ArrayList<>();
+
                 for (int i = 0; i < itemCount; i++) {
                     EditText anEdit = layout.findViewById(i);
+
                     ReminderItem remItem = new ReminderItem(anEdit.getText().toString());
                     remItems.add(remItem);
+
+                    //List<EditText> allEds = new ArrayList<EditText>();
+                    //allEds.add(anEdit);
                 }
 
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
@@ -123,15 +129,19 @@ public class AddRemActivity extends AppCompatActivity {
         });
     }*/
 
-    //Måste fixa ovanstående kod så den för anävndaren till startsidan efter "save"
+    //Måste fixa ovanstående kod så den för anävndaren till startsidan efter "save" - NEJ
 
     //Metod för att lägga till nya edittexts i linearlayouten.
     protected void createEditTextView() {
+
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
+
         newEdit.setId(itemCount++);
         newEdit.setHint("New item:");
         newEdit.requestFocus();
         layout.addView(newEdit);
     }
+
+
 }

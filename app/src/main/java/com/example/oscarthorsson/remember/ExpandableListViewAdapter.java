@@ -3,8 +3,6 @@ package com.example.oscarthorsson.remember;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.widget.CompoundButtonCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,15 +33,11 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
-
-
-
     }
 
     @Override
     public int getGroupCount(){
         return dataHeader.size();
-
     }
 
     @Override
@@ -58,8 +52,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-
-        //System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
+        System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
+        //log
         return theHashMap.get(this.dataHeader.get(groupPosition)).items().get(childPosition);
     }
 
@@ -77,21 +71,21 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public boolean hasStableIds() {
         return false;
     }
+
     @Override
     public void onGroupCollapsed (int groupPosition){
         super.onGroupCollapsed(groupPosition);
     }
+
     @Override
     public void onGroupExpanded(int groupPosition){
         super.onGroupExpanded(groupPosition);
     }
+
     @Override
     public View getChildView(int groupPosition, final int childPosition,boolean isLastChild, View convertView, ViewGroup parent) {
 
         ReminderItem item = (ReminderItem)getChild(groupPosition, childPosition);
-
-
-        //View view;
 
         if(convertView == null){
 
@@ -122,6 +116,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
         holder.cd.setText (item.name());
         return convertView;
     }
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
@@ -140,6 +135,4 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
-
 }
