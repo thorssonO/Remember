@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -96,7 +95,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
             convertView = infalInflater.inflate(R.layout.list_item,null);
 
             final ViewHolder childHolder = new ViewHolder();
-            childHolder.cd= (CheckBox) convertView.findViewById(R.id.check);
+            childHolder.cd = convertView.findViewById(R.id.check);
 
             childHolder.cd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
                 @Override
@@ -110,7 +109,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
             childHolder.cd.setTag(item);
         }
 
-        //((ViewHolder)convertView.getTag()).cd.setTag(childText);
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.getItemName());

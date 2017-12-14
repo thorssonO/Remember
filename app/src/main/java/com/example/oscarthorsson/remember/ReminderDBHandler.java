@@ -21,12 +21,11 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
 
     private final static String DATABASE_NAME = "DATABASE_NAME";
-    private final static int DATABASE_VERSION = 8;
+    private final static int DATABASE_VERSION = 9;
 
-
+    //Tabeller
     private final static String TABLE_NAME = "REMINDERS";
     private final static String ITEM_TABLE_NAME = "ITEM_TABLE";
-
 
     //Kolumner:
     private final static String title = "REMINDER_TITLE";
@@ -34,10 +33,6 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
     private final static String alarmDate = "ALARM_DATE";
     private final static String isChecked = "CHECKED";
     private final static String ID = "ID";
-
-    private static ReminderDBHandler instance;
-
-    //private final static String isActivated = "ACTIVATION";
 
     public ReminderDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION );
@@ -49,14 +44,12 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         String CREATE_LIST_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                 + ID + " integer primary key, "
                 + title + " text" + ")";
-        //+ getItemName + "ITEM_NAME"
+
         //+ alarmDate + "ALARM_DATE"
         //alarmDate är valfri om vi hinner komma så långt, just nu skall en notis skickas om användaren inte når sin macadress.
-        //+ isChecked + "CHECKED"
-
 
         String CREATE_ITEM_TABLE = "CREATE TABLE " + ITEM_TABLE_NAME + "("
-                + ID + " intger, "
+                + ID + " integer, "
                 + getItemName + " text, "
                 + isChecked + " tinyint" + ")";
 
@@ -66,10 +59,21 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE_NAME);
         onCreate(db);
+    }
+
+    public String getReminderID(String title) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectRem = "SELECT ID FROM Reminders where reminder_title = '" + title + "'";
+        Cursor cursor = db.rawQuery(selectRem, null);
+
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+        return "0";
     }
 
     public void addReminderData(String title){
@@ -84,15 +88,6 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String getReminderID(String title) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectRem = "SELECT ID FROM Reminders where reminder_title = '" + title + "'";
-        Cursor cursor = db.rawQuery(selectRem, null);
-        if (cursor.moveToFirst()) {
-            return cursor.getString(0);
-        }
-        return "0";
-    }
     public void addReminderItemData (ReminderItem reminderItem, String id){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -105,18 +100,21 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean updateReminders (Boolean isChecked){
+    public boolean updateReminderItems (Boolean isChecked){
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
+
         args.put("CHECKED", isChecked);
-        return db.update(TABLE_NAME, args,"CHECKED" + "=" + isChecked,null) > 0;
+        return db.update(ITEM_TABLE_NAME, args,"CHECKED" + "=" + isChecked,null) > 0;
     }
 
     public Map<String, List<ReminderItem>> getReminders(){
+
         Map<String, List<ReminderItem>> result = new HashMap<>();
         List<ReminderItem> reminderList= new ArrayList<ReminderItem>();
-        String selectRem = "SELECT " + title + " , " + getItemName+ ", "+isChecked+" FROM " + TABLE_NAME + " natural join " +
-                ITEM_TABLE_NAME;
+        String selectRem = "SELECT " + title + " , " + getItemName+ ", "+ isChecked +" FROM " + TABLE_NAME
+                + " natural join " + ITEM_TABLE_NAME;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectRem, null);
@@ -135,14 +133,11 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
                     result.put(cursor.getString(0), reminderList);
                 }
                 thisTitle = cursor.getString(0);
-                //ReminderList lista = new ReminderList();
-                //lista.set_id(Integer.parseInt();
-                //lista.setTitle(cursor.getString(1));
-
-
 
             } while (cursor.moveToNext());
+
         } cursor.close();
+
         return result;
     }
 }

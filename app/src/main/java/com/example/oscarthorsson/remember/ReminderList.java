@@ -19,7 +19,6 @@ public class ReminderList {
 
     //Tom Konstruktor
     public ReminderList(){
-
     }
 
     //"Full" konstruktor
@@ -29,13 +28,13 @@ public class ReminderList {
         this.items = items;
         this.alarmDate = alarmDate;
     }
-
+/*
     //En-parameterskonstruktor
     public ReminderList(String title){
         super();
         this.title = title;
     }
-
+*/
     public String title() {
         return title;
     }
@@ -65,7 +64,4 @@ public class ReminderList {
         return true;
     }
 
-    public void set_id(int id) {
-        this.id= id;
-    }
 }

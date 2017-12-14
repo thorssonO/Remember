@@ -29,9 +29,6 @@
         </activity>
         <activity android:name=".AddRemActivity" /><!--android:windowSoftInputMode="adjustResize"-->
         <activity android:name=".SavedListsActivity" />
-        <activity android:name=".OpenListActivity">
-
-        </activity>
         <activity
             android:name=".SettingsActivity" android:label="@string/title_activity_settings" android:parentActivityName=".HomeActivity">
             <meta-data

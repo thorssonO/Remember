@@ -14,20 +14,11 @@ import android.widget.EditText;
 
 public class WifiBroadcastReceiver extends BroadcastReceiver {
 
-    //private Context context;
     private boolean connected = false;
     private String macAddress;
     private String bssid;
     private String action;
-    //private EditText text;
 
-
-    //Konstruktor behövs inte
-/*
-    public WifiBroadcastReceiver(Context context) {
-        this.context = context;
-    }
-*/
     @Override
     //Kallas på från Homeactivity
     public void onReceive(Context context, Intent intent) {

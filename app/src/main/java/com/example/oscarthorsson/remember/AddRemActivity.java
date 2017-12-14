@@ -17,12 +17,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+
 
 public class AddRemActivity extends AppCompatActivity {
-    //implements DatePickerDialog.OnDateSetListener
-
-    //undersök datepickerdialog
 
     public Button dateButton;
 
@@ -103,46 +100,21 @@ public class AddRemActivity extends AppCompatActivity {
 
                     ReminderItem remItem = new ReminderItem(anEdit.getText().toString());
                     remItems.add(remItem);
-
-                    //List<EditText> allEds = new ArrayList<EditText>();
-                    //allEds.add(anEdit);
                 }
 
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
-                ReminderTitle remTitle= new ReminderTitle(title);
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
 
-                //String time = myCalendar.getTime();
-
-                //FakeReminderStore.getInstance().addReminderList(remList);
-                //FakeReminderStore.getInstance().addTitle(remTitle);
                 reminderDB.addReminderData(title);
-                ReminderList rm = new ReminderList(title, reminderDB.getReminders().get(title),null);
                 String id = reminderDB.getReminderID(title);
                 for(ReminderItem item : remItems) {
                     reminderDB.addReminderItemData(item, id);
                 }
-
-                //reminderDB.addReminderItemData(new ReminderItem(name, isChecked));
-
+                //Loggar bara...
                 System.out.println("New list: " + remList);
             }
         });
     }
-
-    /*public void onSaveBtn(View v) {
-        saveButton = (Button) findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-                Intent but22 = new Intent(AddRemActivity.this, HomeActivity.class);
-                startActivity(but22);
-            }
-        });
-    }*/
-
-    //Måste fixa ovanstående kod så den för anävndaren till startsidan efter "save" - NEJ
 
     //Metod för att lägga till nya edittexts i linearlayouten.
     protected void createEditTextView() {
@@ -155,6 +127,4 @@ public class AddRemActivity extends AppCompatActivity {
         newEdit.requestFocus();
         layout.addView(newEdit);
     }
-
-
 }

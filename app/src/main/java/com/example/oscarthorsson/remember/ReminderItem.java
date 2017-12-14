@@ -13,11 +13,9 @@ class ReminderItem {
     boolean isChecked;
     boolean Selected=true;
 
-    public ReminderItem(String name //boolean isChecked
-    ) {
+    public ReminderItem(String name) {
         super();
         this.name = name;
-        //this.isChecked = isChecked;
     }
 
     public String getItemName() {
@@ -27,6 +25,7 @@ class ReminderItem {
     public boolean isSelected(){
         return Selected;
     }
+
     public void setChecked(boolean checked) {
         this.isChecked = checked;
     }
@@ -36,19 +35,6 @@ class ReminderItem {
     }
 
     public boolean isChecked() {
-        /*String query = "select item_Status";
-        Statement ItemS= null;
-        ResultSet rs = ItemS.executeQuery(query);
-
-        while (rs.next())
-        {
-            int itemStatus=rs.getInt(item_Status);
-            if(itemStatus==1){
-                isChecked=true;
-            }
-        }
-
-        */
         return isChecked;
     }
 
