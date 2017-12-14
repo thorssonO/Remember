@@ -8,13 +8,21 @@ import java.util.List;
  */
 
 public class ReminderList {
+    //int _id;
     String title;
     List<ReminderItem> items;
     List <ReminderTitle> titles;
 
     //LocalDate alarmDate;  TODO: find out if we can move up to API-level 26
     Date alarmDate;
+    private int id;
 
+    //Tom Konstruktor
+    public ReminderList(){
+
+    }
+
+    //"Full" konstruktor
     public ReminderList(String title, List<ReminderItem> items, Date alarmDate) {
         super();
         this.title = title;
@@ -22,6 +30,7 @@ public class ReminderList {
         this.alarmDate = alarmDate;
     }
 
+    //En-parameterskonstruktor
     public ReminderList(String title){
         super();
         this.title = title;
@@ -29,6 +38,10 @@ public class ReminderList {
 
     public String title() {
         return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public List<ReminderItem> items() {
@@ -50,5 +63,9 @@ public class ReminderList {
             }
         }
         return true;
+    }
+
+    public void set_id(int id) {
+        this.id= id;
     }
 }
