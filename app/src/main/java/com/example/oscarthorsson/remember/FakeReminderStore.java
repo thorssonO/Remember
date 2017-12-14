@@ -7,8 +7,8 @@ import java.util.List;
  * Created by patsy on 2017-11-15.
  */
 
-public class FakeReminderStore
-{
+public class FakeReminderStore {
+
     private static FakeReminderStore instance;
 
     List<ReminderList> reminders;
@@ -21,6 +21,7 @@ public class FakeReminderStore
         }
         return instance;
     }
+
     private FakeReminderStore (){
         reminders= new ArrayList<>();
         titles=new ArrayList<>();
@@ -39,12 +40,10 @@ public class FakeReminderStore
     }
 
     public List<ReminderItem> getItems(){
-
         return items;
     }
 
     public List <ReminderTitle> getReminderListTitles(){
-
         return titles;
     }
 
@@ -53,7 +52,6 @@ public class FakeReminderStore
     }
 
     public String toStringTitel() {
-        return ""+titles;
+        return " "+titles;
     }
-
 }

@@ -28,7 +28,7 @@ public class AddRemActivity extends AppCompatActivity {
     public Button addButton;
     public Button saveButton;
     static int itemCount = 0;
-    ReminderDBHandler reminderDBHandler;
+    ReminderDBHandler reminderDB;
     Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -52,7 +52,8 @@ public class AddRemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-         reminderDBHandler= new ReminderDBHandler(this);
+
+        reminderDB = new ReminderDBHandler(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rem);
@@ -84,7 +85,7 @@ public class AddRemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("date saved: " + myCalendar);
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
-                //Kollar bara så texten följer med när jag sparar
+                //Kollar bara så titeln följer med när jag sparar
 
                 //Följande är så att användaren återvänder till homeactivity efter sparad reminder
                 Intent homeIntent = new Intent(AddRemActivity.this, HomeActivity.class);
@@ -93,7 +94,6 @@ public class AddRemActivity extends AppCompatActivity {
                 LinearLayout layout = findViewById(R.id.buttonLayout);
 
                 // TODO: ta reda på hur man hittar de nyskapade edittextena, krashar efter mer än en lista
-
 
                 List<ReminderItem> remItems = new ArrayList<>();
 
@@ -110,18 +110,18 @@ public class AddRemActivity extends AppCompatActivity {
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
                 ReminderTitle remTitle= new ReminderTitle(title);
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
+
                 //String time = myCalendar.getTime();
+
                 FakeReminderStore.getInstance().addReminderList(remList);
                 FakeReminderStore.getInstance().addTitle(remTitle);
 
-                reminderDBHandler.addReminderData(new ReminderList(title));
-                reminderDBHandler.addReminderItemData(new ReminderItem(remItem()));
+                reminderDB.addReminderData(new ReminderList(title));
+                //reminderDB.addReminderItemData(new ReminderItem(name, isChecked));
 
                 System.out.println("New list: " + remList);
             }
         });
-
-
     }
 
     /*public void onSaveBtn(View v) {

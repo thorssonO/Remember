@@ -13,17 +13,21 @@ class ReminderItem {
     boolean isChecked;
     boolean Selected=true;
 
-    public ReminderItem(String name) {
+    public ReminderItem(String name //boolean isChecked
+    ) {
+        super();
         this.name = name;
-
+        //this.isChecked = isChecked;
     }
+
     public String getItemName() {
         return name;
     }
+
     public boolean isSelected(){
         return Selected;
-
     }
+
     public void setSelected(boolean selected){
         this.Selected= Selected;
     }
@@ -41,12 +45,13 @@ class ReminderItem {
             }
         }
 
-        */return isChecked;
+        */
+        return isChecked;
     }
-public void onClickCheck(){
 
+    public void onClickCheck(){
         // metod som vid tryck på checkKnapp hämtar data från databas och ändrar 0 till 1 på itemStatus tabellen.
-            // Svårt att göra utan databas dock så får vänta tills dess...Jag (Clara) gör det då!
+        // Svårt att göra utan databas dock så får vänta tills dess...Jag (Clara) gör det då!
     }
 
     public String toString() {

@@ -22,6 +22,11 @@ public class ReminderList {
         this.alarmDate = alarmDate;
     }
 
+    public ReminderList(String title){
+        super();
+        this.title = title;
+    }
+
     public String title() {
         return title;
     }
