@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Remember</string>
-    <string name="saved_remiders">Saved Remiders</string>
     <string name="active_remiders">Active remiders</string>
     <string name="add_new_remider">Add New Remider</string>
     <string name="saved_reminders">Saved Reminders</string>
