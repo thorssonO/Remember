@@ -8,6 +8,7 @@ import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SavedListsActivity extends AppCompatActivity {
     ExpandableListAdapter listAdapter;
@@ -21,12 +22,14 @@ public class SavedListsActivity extends AppCompatActivity {
         FakeReminderStore savedL = FakeReminderStore.getInstance();
         //List <ReminderList> savedLil = savedL.getReminders();
         System.out.println("Before fetching data...");
-        dataHeader= new ArrayList<>();
+        dataHeader = new ArrayList<>();
         ReminderDBHandler rd = new ReminderDBHandler(this);
         System.out.println("Listan från db: " + rd.getReminders());
-        for(ReminderList rm : rd.getReminders()) {
-            theHashMap.put(rm.title(), rm);
-            dataHeader.add(rm.title());
+        Map<String, List<ReminderItem>> map = rd.getReminders();
+        for(String title : map.keySet()) {
+            ReminderList remList = new ReminderList(title,map.get(title), null);
+            theHashMap.put(title, remList);
+            dataHeader.add(title);
             System.out.println("hej");
             System.out.println("hashmap: " + theHashMap);
             System.out.println("dataheader: " + dataHeader);
@@ -35,6 +38,8 @@ public class SavedListsActivity extends AppCompatActivity {
     }
 
     public void view(){
+        System.out.println("hashmap: " + theHashMap);
+        System.out.println("dataheader: " + dataHeader);
         ExpandableListView listView = findViewById(R.id.test);
         listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
         listView.setAdapter(listAdapter);

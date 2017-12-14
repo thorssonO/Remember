@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class AddRemActivity extends AppCompatActivity {
     //implements DatePickerDialog.OnDateSetListener
@@ -113,10 +114,15 @@ public class AddRemActivity extends AppCompatActivity {
 
                 //String time = myCalendar.getTime();
 
-                FakeReminderStore.getInstance().addReminderList(remList);
-                FakeReminderStore.getInstance().addTitle(remTitle);
+                //FakeReminderStore.getInstance().addReminderList(remList);
+                //FakeReminderStore.getInstance().addTitle(remTitle);
+                reminderDB.addReminderData(title);
+                ReminderList rm = new ReminderList(title, reminderDB.getReminders().get(title),null);
+                String id = reminderDB.getReminderID(title);
+                for(ReminderItem item : remItems) {
+                    reminderDB.addReminderItemData(item, id);
+                }
 
-                reminderDB.addReminderData(new ReminderList(title));
                 //reminderDB.addReminderItemData(new ReminderItem(name, isChecked));
 
                 System.out.println("New list: " + remList);

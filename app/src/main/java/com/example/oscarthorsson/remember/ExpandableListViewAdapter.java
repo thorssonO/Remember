@@ -30,6 +30,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
 
     public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, ReminderList> theHashMap){
+        System.out.println("hashmap: " + theHashMap);
+        System.out.println("dataheader: " + dataHeader);
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
@@ -42,6 +44,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        System.out.println(this.dataHeader.get(groupPosition));
         return this.theHashMap.get(this.dataHeader.get(groupPosition)).items().size();
     }
 
