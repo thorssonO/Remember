@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.icu.text.SymbolTable;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -21,11 +20,12 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
 
     private final static String DATABASE_NAME = "DATABASE_NAME";
-    private final static int DATABASE_VERSION = 9;
+    private final static int DATABASE_VERSION = 18;
 
     //Tabeller
     private final static String TABLE_NAME = "REMINDERS";
     private final static String ITEM_TABLE_NAME = "ITEM_TABLE";
+    private final static String MAC_TABLE_NAME = "MAC_TABLE";
 
     //Kolumner:
     private final static String title = "REMINDER_TITLE";
@@ -33,6 +33,8 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
     private final static String alarmDate = "ALARM_DATE";
     private final static String isChecked = "CHECKED";
     private final static String ID = "ID";
+    private final static String MAC = "MAC_ADDRESS";
+    private final static String MAC_ADDRESS = "02:00:00:00:00:00";
 
     public ReminderDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION );
@@ -53,14 +55,19 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
                 + getItemName + " text, "
                 + isChecked + " tinyint" + ")";
 
+        String CREATE_MAC_TABLE = "CREATE TABLE " + MAC_TABLE_NAME + "("
+                + MAC + " text" + ")";
+
         db.execSQL(CREATE_LIST_TABLE);
         db.execSQL(CREATE_ITEM_TABLE);
+        db.execSQL(CREATE_MAC_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MAC_TABLE_NAME);
         onCreate(db);
     }
 
@@ -73,6 +80,8 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             return cursor.getString(0);
         }
+        cursor.close();
+
         return "0";
     }
 
@@ -100,6 +109,32 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addMac(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        //WifiBroadcastReceiver wbr = new WifiBroadcastReceiver();
+
+        values.put("MAC_ADDRESS", MAC_ADDRESS);
+        System.out.println("nu lägger vi till macadressen i databasen " + MAC_ADDRESS);
+        db.insert(MAC_TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public String getMac() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectRem = "SELECT * FROM MAC_TABLE;" ;
+        Cursor cursor = db.rawQuery(selectRem, null);
+
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+        cursor.close();
+        return "0";
+    }
+
+
     public boolean updateReminderItems (Boolean isChecked){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -118,7 +153,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectRem, null);
-        String thisTitle="";
+        String thisTitle = " ";
         if (cursor.moveToFirst()) {
             do {
                 if(cursor.getString(0).equals(thisTitle)) {

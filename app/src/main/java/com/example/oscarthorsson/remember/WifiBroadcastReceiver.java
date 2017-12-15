@@ -46,7 +46,6 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
 
             bssid = wifi.getBSSID();
             //Sparar macadressen i strängen
-
             connected = macAddress.equals(bssid);
         }
 
@@ -54,5 +53,9 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
         //För att se om vi faktiskt får med bssid
 
         return connected;
+    }
+
+    public String getMacAddress(){
+        return bssid;
     }
 }

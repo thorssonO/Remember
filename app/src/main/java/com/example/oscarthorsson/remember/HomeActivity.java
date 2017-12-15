@@ -1,5 +1,6 @@
 package com.example.oscarthorsson.remember;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -67,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         onClickSavedReminders();
         onClickSettings();
 
-        //ToolBar: använda möjligen senare
+        //ToolBar: använda, möjligen senare(?)
     }
 
     protected void onStart() {
@@ -80,10 +81,24 @@ public class HomeActivity extends AppCompatActivity {
         this.registerReceiver(broadcast, intentFilter);
 
         showBSSID();
+
+        ReminderDBHandler rDBH = new ReminderDBHandler(this);
+        rDBH.addMac();
+
+        System.out.println("MAC från databasen: " + rDBH.getMac());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+        unregisterReceiver(broadcast);
+
+       /* { if ()
+            builder.setMessage("No Network, Check List to Not Forget! ");
+            builder.setCancelable(true);
+        }*/
     }
 
     @Override
     protected void onStop() {
+       // unregisterReceiver(broadcast);
         super.onStop();
     }
 
