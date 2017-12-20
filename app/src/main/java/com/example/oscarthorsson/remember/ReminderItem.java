@@ -8,14 +8,16 @@ import java.time.LocalDate;
  * Created by Oscar Thorsson on 2017-11-13.
  */
 
-public class ReminderItem {
+class ReminderItem {
     private String name;
     boolean isChecked;
     boolean Selected=true;
 
-    public ReminderItem(String name) {
+    public ReminderItem(String name //boolean isChecked
+    ) {
         super();
         this.name = name;
+        //this.isChecked = isChecked;
     }
 
     public String getItemName() {
@@ -25,7 +27,6 @@ public class ReminderItem {
     public boolean isSelected(){
         return Selected;
     }
-
     public void setChecked(boolean checked) {
         this.isChecked = checked;
     }
@@ -35,6 +36,19 @@ public class ReminderItem {
     }
 
     public boolean isChecked() {
+        /*String query = "select item_Status";
+        Statement ItemS= null;
+        ResultSet rs = ItemS.executeQuery(query);
+
+        while (rs.next())
+        {
+            int itemStatus=rs.getInt(item_Status);
+            if(itemStatus==1){
+                isChecked=true;
+            }
+        }
+
+        */
         return isChecked;
     }
 
