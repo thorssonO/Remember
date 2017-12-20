@@ -1,5 +1,6 @@
 package com.example.oscarthorsson.remember;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 
 import android.content.Intent;
@@ -18,16 +19,15 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-
 public class AddRemActivity extends AppCompatActivity {
 
     public Button dateButton;
-
     public Button addButton;
     public Button saveButton;
     static int itemCount = 0;
     ReminderDBHandler reminderDB;
     Calendar myCalendar = Calendar.getInstance();
+
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -37,11 +37,11 @@ public class AddRemActivity extends AppCompatActivity {
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel(); //Används inte till mer än att se till att datumet följer med
+            updateLabel(); // <--Används inte till mer än att se till att datumet följer med
         }
-        //TODO använd TAG istället för ID på de Edittext som skapas dynamiskt
     };
 
+    //Används i LOG-syfte, skriver ut i Logcat
     private void updateLabel() {
         String myFormat = "MM/dd/YYYY";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -72,6 +72,7 @@ public class AddRemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("Add button clicked");
+                //LOg
                 createEditTextView();
             }
         });
@@ -85,14 +86,19 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("title saved: " + ((EditText)findViewById(R.id.titleText)).getText());
                 //Kollar bara så titeln följer med när jag sparar
 
-                //Följande är så att användaren återvänder till homeactivity efter sparad reminder
+                //Användaren behöver fylla i ett datum för att spara
+                if (myCalendar.getTime().equals("")) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(AddRemActivity.this);
+                    builder1.setMessage("Don't forget to set a date");
+                    builder1.setCancelable(true);
+                }
+
+                //Följande 2 rader är till för att användaren
+                //återvänder till homeactivity efter sparad reminder
                 Intent homeIntent = new Intent(AddRemActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
 
                 LinearLayout layout = findViewById(R.id.buttonLayout);
-
-                // TODO: ta reda på hur man hittar de nyskapade edittextena, krashar efter mer än en lista
-
                 List<ReminderItem> remItems = new ArrayList<>();
 
                 for (int i = 0; i < itemCount; i++) {
@@ -116,15 +122,18 @@ public class AddRemActivity extends AppCompatActivity {
         });
     }
 
-    //Metod för att lägga till nya edittexts i linearlayouten.
+    //Metod för att lägga till nya edittexts i
+    //linearlayouten. Anropas längre upp i klassen, i onClick()
     protected void createEditTextView() {
 
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
-
         newEdit.setId(itemCount++);
         newEdit.setHint("New item:");
         newEdit.requestFocus();
+        newEdit.setMaxLines(1);
+        newEdit.setSingleLine(true);
+        newEdit.setLines(1);
         layout.addView(newEdit);
     }
 }

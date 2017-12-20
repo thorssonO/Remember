@@ -1,6 +1,5 @@
 package com.example.oscarthorsson.remember;
 
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -10,19 +9,15 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 
 /**
  * Created by patsy on 2017-11-27.
  */
 
-public class ExpandableListViewAdapter extends BaseExpandableListAdapter
-{
-    public LayoutInflater infalInflater;
+public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
+    public LayoutInflater iInflater;
     public Context context;
     public ArrayList<String> dataHeader;
     HashMap<String, ReminderList> theHashMap = new HashMap<String, ReminderList>();
@@ -31,6 +26,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, ReminderList> theHashMap){
         System.out.println("hashmap: " + theHashMap);
         System.out.println("dataheader: " + dataHeader);
+        //Log-syfte
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
@@ -89,10 +85,10 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
 
         ReminderItem item = (ReminderItem)getChild(groupPosition, childPosition);
 
-        if(convertView == null){
+        if (convertView == null){
 
-            infalInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item,null);
+            iInflater= (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = iInflater.inflate(R.layout.list_item,null);
 
             final ViewHolder childHolder = new ViewHolder();
             childHolder.cd = convertView.findViewById(R.id.check);
@@ -119,12 +115,12 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_group,null);
-
+            LayoutInflater iInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = iInflater.inflate(R.layout.list_group,null);
         }
+
         TextView lblListHeader = convertView. findViewById(R.id.header);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setTypeface(null, Typeface.NORMAL);
         lblListHeader.setText(headerTitle);
         return convertView;
     }

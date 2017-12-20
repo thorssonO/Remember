@@ -22,7 +22,6 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     @Override
     //Kallas på från Homeactivity
     public void onReceive(Context context, Intent intent) {
-
         action = intent.getAction();
 
         if (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION .equals(action)) {
@@ -35,27 +34,25 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    //Kallas på från Homeactivity, via onReceive()
+    //Kallas på från Homeactivity, via onReceive() ovan
     private boolean checkConnectedToWifi(Context context) {
-
         macAddress = "Mac-adressen";
         WifiManager wifiManager = (WifiManager)context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifi = wifiManager.getConnectionInfo();
+        //Don't know how to get rid of warning above..
 
         if (wifi != null) {
-
             bssid = wifi.getBSSID();
             //Sparar macadressen i strängen
             connected = macAddress.equals(bssid);
         }
 
-        System.out.println("Macadressen är: " + bssid);
+        System.out.println("Verkliga macadressen är: " + bssid);
         //För att se om vi faktiskt får med bssid
-
         return connected;
     }
 
-    public String getMacAddress(){
+    /*public String getMacAddress(){
         return bssid;
-    }
+    }*/
 }

@@ -21,8 +21,11 @@ public class SavedListsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_saved_lists);
         dataHeader = new ArrayList<>();
         ReminderDBHandler rd = new ReminderDBHandler(this);
-        System.out.println("Listan från db: " + rd.getReminders());
+
+        System.out.println("List from rDB: " + rd.getReminders());
+
         Map<String, List<ReminderItem>> map = rd.getReminders();
+
         for(String title : map.keySet()) {
             ReminderList remList = new ReminderList(title,map.get(title), null);
             theHashMap.put(title, remList);

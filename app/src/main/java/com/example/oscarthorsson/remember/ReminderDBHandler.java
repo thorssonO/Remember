@@ -71,8 +71,8 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getReminderID(String title) {
 
+    public String getReminderID(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectRem = "SELECT ID FROM Reminders where reminder_title = '" + title + "'";
         Cursor cursor = db.rawQuery(selectRem, null);
@@ -85,8 +85,10 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         return "0";
     }
 
+    //anropas från AddRemactivty
+    //används för att lägga till titlen på en reminder
+    //i sqlite-databasen
     public void addReminderData(String title){
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -97,8 +99,11 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    //anropas från AddRemactivty
+    //används för att lägga till resterande variabler utöver
+    //titeln vid en remider, dvs. namn på reminder-item,
+    //huruvida den är icheckad (kommer senare) och ett ID
     public void addReminderItemData (ReminderItem reminderItem, String id){
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -110,10 +115,8 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
     }
 
     public void addMac(){
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        //WifiBroadcastReceiver wbr = new WifiBroadcastReceiver();
 
         values.put("MAC_ADDRESS", MAC_ADDRESS);
         System.out.println("nu lägger vi till macadressen i databasen " + MAC_ADDRESS);
@@ -121,8 +124,10 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String getMac() {
+    //ovanstående och nedanstående metoder anävnds för att
+    //lägga till och hämta ut macadressen från databasen
 
+    public String getMac() {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectRem = "SELECT * FROM MAC_TABLE;" ;
         Cursor cursor = db.rawQuery(selectRem, null);
@@ -135,15 +140,19 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateReminderItems (Boolean isChecked){
-
+    /*public boolean updateReminderItems (Boolean isChecked){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
 
         args.put("CHECKED", isChecked);
         return db.update(ITEM_TABLE_NAME, args,"CHECKED" + "=" + isChecked,null) > 0;
-    }
+    }*/
 
+
+    //Följande getReminders(), används i savedlistsactivity
+    //för att hämta ut samtliga reminders ur både tabellen
+    //som innehåller titlar och den som innehåller id,
+    //remideritems och isChecked.
     public Map<String, List<ReminderItem>> getReminders(){
 
         Map<String, List<ReminderItem>> result = new HashMap<>();
@@ -154,12 +163,16 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectRem, null);
         String thisTitle = " ";
+
         if (cursor.moveToFirst()) {
             do {
-                if(cursor.getString(0).equals(thisTitle)) {
+
+                //note to self: första kolumen är columnIndex 0, som array..
+                if (cursor.getString(0).equals(thisTitle)) {
                     ReminderItem item = new ReminderItem(cursor.getString(1));
                     item.setChecked(cursor.getInt(2) == 1);
                     reminderList.add(item);
+
                 } else {
                     reminderList=new ArrayList<ReminderItem>();
                     ReminderItem item = new ReminderItem(cursor.getString(1));
@@ -167,12 +180,12 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
                     reminderList.add(item);
                     result.put(cursor.getString(0), reminderList);
                 }
+
                 thisTitle = cursor.getString(0);
 
             } while (cursor.moveToNext());
-
-        } cursor.close();
-
+        }
+        cursor.close();
         return result;
     }
 }

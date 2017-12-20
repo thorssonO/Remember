@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button settings;
     private EditText text;
 
+    //Byter aktivitet med Intent() från homeactivity till addremactivity
     public void onClickNewRem(){
         newReminders = findViewById(R.id.newReminders);
         newReminders.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    //Byter aktivitet med Intent() från homeactivity till savedlistsactivity
     public void onClickSavedReminders(){
         savedReminders = findViewById(R.id.savedReminders);
         savedReminders.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    //Byter aktivitet med Intent() från homeactivity till settingsactivity
     public void onClickSettings(){
         settings = findViewById(R.id.settings);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -55,12 +58,11 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void showBSSID(){
+    /*public void showBSSID(){
         text = findViewById(R.id.editBssid);
 
-    }
+    }*/
 
-    //Ovan skall (?) användas för bakåt och settingsikon i en ActionBar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -80,15 +82,19 @@ public class HomeActivity extends AppCompatActivity {
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         this.registerReceiver(broadcast, intentFilter);
 
-        showBSSID();
+        //showBSSID();
 
         ReminderDBHandler rDBH = new ReminderDBHandler(this);
         rDBH.addMac();
 
         System.out.println("MAC från databasen: " + rDBH.getMac());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-        unregisterReceiver(broadcast);
+        if (rDBH.getMac().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+            builder.setMessage("No Network, Check Lists to Not Forget!");
+            builder.setCancelable(true);
+            unregisterReceiver(broadcast);
+        }
 
        /* { if ()
             builder.setMessage("No Network, Check List to Not Forget! ");

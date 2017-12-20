@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddRemActivity" /><!--android:windowSoftInputMode="adjustResize"-->
+        <activity android:name=".AddRemActivity" android:windowSoftInputMode="adjustResize|stateAlwaysVisible"/>
         <activity android:name=".SavedListsActivity" />
         <activity
             android:name=".SettingsActivity" android:label="@string/title_activity_settings" android:parentActivityName=".HomeActivity">

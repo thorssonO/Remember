@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * Created by Oscar Thorsson on 2017-11-13.
  */
 
-class ReminderItem {
+public class ReminderItem {
     private String name;
     boolean isChecked;
     boolean Selected=true;

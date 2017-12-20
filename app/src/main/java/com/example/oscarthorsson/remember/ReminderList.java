@@ -8,7 +8,6 @@ import java.util.List;
  */
 
 public class ReminderList {
-    //int _id;
     String title;
     List<ReminderItem> items;
     List <ReminderTitle> titles;
@@ -55,13 +54,13 @@ public class ReminderList {
         return  ""+title+""+ items+""+alarmDate;
     }
 
-    public boolean areAllItemsChecked() {
+    /*public boolean areAllItemsChecked() {
         for(ReminderItem item : items) {
             if ( !item.isChecked()) {
                 return false;
             }
         }
         return true;
-    }
+    }*/
 
 }
