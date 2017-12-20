@@ -20,10 +20,12 @@ public class SavedListsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_lists);
         dataHeader = new ArrayList<>();
+
+        //nedan hämtar ut och (for)-loopar igenom samtliga reminders
+        // ur databas med en map som tar en string
+        //för titeln och en list med reminderitems
         ReminderDBHandler rd = new ReminderDBHandler(this);
-
-        System.out.println("List from rDB: " + rd.getReminders());
-
+        System.out.println("List from rDB: " + rd.getReminders()); //<--LOG
         Map<String, List<ReminderItem>> map = rd.getReminders();
 
         for(String title : map.keySet()) {
