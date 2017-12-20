@@ -35,36 +35,36 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public int getGroupCount(){
         return dataHeader.size();
-    }
+    }//Antal titlar
 
     @Override
     public int getChildrenCount(int groupPosition) {
         System.out.println(this.dataHeader.get(groupPosition));
         return this.theHashMap.get(this.dataHeader.get(groupPosition)).items().size();
-    }
+    } //Antal items
 
     @Override
     public Object getGroup(int groupPosition) {
         return dataHeader.get(groupPosition);
     }
-
+        //Hämtar titlar
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
         //log
         return theHashMap.get(this.dataHeader.get(groupPosition)).items().get(childPosition);
-    }
+    }//Hämtar items
 
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
-
+    //Hämtar titel id för att postitionera dem
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return 0;
     }
-
+//Hämtar item id för att positionera dem
     @Override
     public boolean hasStableIds() {
         return false;
@@ -110,6 +110,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         holder.cd.setText (item.getItemName());
         return convertView;
     }
+    //Hur items ska visas
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -124,6 +125,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         lblListHeader.setText(headerTitle);
         return convertView;
     }
+    //Hur titlar ska visas
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

@@ -32,7 +32,7 @@ public class SavedListsActivity extends AppCompatActivity {
             ReminderList remList = new ReminderList(title,map.get(title), null);
             theHashMap.put(title, remList);
             dataHeader.add(title);
-        }
+        }//Lägger in data i hashmap och dataheader
         view();
     }
 
@@ -40,5 +40,5 @@ public class SavedListsActivity extends AppCompatActivity {
         ExpandableListView listView = findViewById(R.id.test);
         listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
         listView.setAdapter(listAdapter);
-    }
+    }// Hämtar viewn för hur datan skall visas från adaptern
 }
