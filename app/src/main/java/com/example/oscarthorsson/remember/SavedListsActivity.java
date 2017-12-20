@@ -40,5 +40,5 @@ public class SavedListsActivity extends AppCompatActivity {
         ExpandableListView listView = findViewById(R.id.test);
         listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
         listView.setAdapter(listAdapter);
-    }// Hämtar viewn för hur datan skall visas från adaptern
+    }// Hämtar viewen för hur datan skall visas från adaptern
 }

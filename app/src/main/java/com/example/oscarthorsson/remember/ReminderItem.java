@@ -1,9 +1,5 @@
 package com.example.oscarthorsson.remember;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.time.LocalDate;
-
 /**
  * Created by Oscar Thorsson on 2017-11-13.
  */
@@ -27,13 +23,14 @@ class ReminderItem {
     public boolean isSelected(){
         return Selected;
     }
+
     public void setChecked(boolean checked) {
         this.isChecked = checked;
     }
 
-    public void setSelected(boolean selected){
-        this.Selected= Selected;
-    }
+    //public void setSelected(boolean selected){
+    //     this.Selected= Selected;
+    //}
 
     public boolean isChecked() {
         /*String query = "select item_Status";

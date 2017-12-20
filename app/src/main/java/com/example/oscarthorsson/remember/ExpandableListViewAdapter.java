@@ -35,7 +35,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public int getGroupCount(){
         return dataHeader.size();
-    }//Antal titlar
+    } //Antal titlar
 
     @Override
     public int getChildrenCount(int groupPosition) {
@@ -46,8 +46,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getGroup(int groupPosition) {
         return dataHeader.get(groupPosition);
-    }
-        //Hämtar titlar
+    } //Hämtar titlar
+
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
@@ -58,13 +58,13 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
-    }
-    //Hämtar titel id för att postitionera dem
+    }//Hämtar titel id för att postitionera dem
+
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return 0;
-    }
-//Hämtar item id för att positionera dem
+    } //Hämtar item id för att positionera dem
+
     @Override
     public boolean hasStableIds() {
         return false;
@@ -100,7 +100,6 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                     itemCheck.setSelected(button.isChecked());
                 }
             });
-
             convertView.setTag(childHolder);
             childHolder.cd.setTag(item);
         }
@@ -109,8 +108,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.getItemName());
         return convertView;
-    }
-    //Hur items ska visas
+    } //besrkiver hur items skall visas
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -124,8 +122,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         lblListHeader.setTypeface(null, Typeface.NORMAL);
         lblListHeader.setText(headerTitle);
         return convertView;
-    }
-    //Hur titlar ska visas
+    } //beskiver hur titlar skall visas
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
