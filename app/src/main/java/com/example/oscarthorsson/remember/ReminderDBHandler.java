@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +62,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_MAC_TABLE);
     }
 
+    //nedan metod körs ifall databasversionen ändrats
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -71,7 +71,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
+    //metod för att hämta id
     public String getReminderID(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectRem = "SELECT ID FROM Reminders where reminder_title = '" + title + "'";
@@ -81,7 +81,6 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
             return cursor.getString(0);
         }
         cursor.close();
-
         return "0";
     }
 

@@ -26,7 +26,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     public ExpandableListViewAdapter(Context context, ArrayList<String> dataHeader, HashMap<String, ReminderList> theHashMap){
         System.out.println("hashmap: " + theHashMap);
         System.out.println("dataheader: " + dataHeader);
-        //Log-syfte
+        //Log-syfte ovan
         this.context = context;
         this.theHashMap= theHashMap;
         this.dataHeader=dataHeader;
@@ -53,12 +53,12 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         System.out.println(this.theHashMap.get(this.dataHeader.get(groupPosition)));
         //log
         return theHashMap.get(this.dataHeader.get(groupPosition)).items().get(childPosition);
-    }//Hämtar items
+    } //Hämtar items
 
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
-    }//Hämtar titel id för att postitionera dem
+    } //Hämtar titel id för att positionera dem
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
@@ -108,7 +108,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         holder.cd.setChecked (item.isSelected());
         holder.cd.setText (item.getItemName());
         return convertView;
-    } //besrkiver hur items skall visas
+    } //beskriver hur items skall visas
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {

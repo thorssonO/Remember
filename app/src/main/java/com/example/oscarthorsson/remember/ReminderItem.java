@@ -28,9 +28,9 @@ class ReminderItem {
         this.isChecked = checked;
     }
 
-    //public void setSelected(boolean selected){
-    //     this.Selected= Selected;
-    //}
+    public void setSelected(boolean selected){
+        this.Selected= Selected;
+    }
 
     public boolean isChecked() {
         /*String query = "select item_Status";
