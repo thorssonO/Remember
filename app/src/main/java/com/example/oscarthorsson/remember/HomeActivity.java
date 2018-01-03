@@ -70,11 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         onClickSavedReminders();
         onClickSettings();
 
-        //ToolBar: använda, möjligen senare(?)
-    }
-
-    protected void onStart() {
-        super.onStart();
         BroadcastReceiver broadcast = new WifiBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
 
@@ -82,20 +77,28 @@ public class HomeActivity extends AppCompatActivity {
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         this.registerReceiver(broadcast, intentFilter);
 
-        //showBSSID();
-
         ReminderDBHandler rDBH = new ReminderDBHandler(this);
         rDBH.addMac();
 
         System.out.println("MAC från databasen: " + rDBH.getMac());
 
-        if (!rDBH.getMac().equals("02:00:00:00:00:00")) {
+        if (rDBH.getMac().equals("02:00:00:00:00:00")) {
             System.out.println("Försöker bygga builder");
-            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("No Network, Check Lists to Not Forget!");
-            builder.setCancelable(true);
+            builder.setTitle("ALERT");
+            builder.show();
+            //builder.setCancelable(true);
             unregisterReceiver(broadcast);
         }
+
+        //ToolBar: använda, möjligen senare(?)
+    }
+
+    protected void onStart() {
+        super.onStart();
+
+        //showBSSID();
 
        /* { if ()
             builder.setMessage("No Network, Check List to Not Forget! ");
