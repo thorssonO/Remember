@@ -83,12 +83,12 @@ public class HomeActivity extends AppCompatActivity {
         System.out.println("MAC från databasen: " + rDBH.getMac());
 
         if (rDBH.getMac().equals("02:00:00:00:00:00")) {
-            System.out.println("Försöker bygga builder");
+            System.out.println("Bygger builder");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("No Network, Check Lists to Not Forget!");
             builder.setTitle("ALERT");
             builder.show();
-            //builder.setCancelable(true);
+            builder.setCancelable(true);
             unregisterReceiver(broadcast);
         }
 

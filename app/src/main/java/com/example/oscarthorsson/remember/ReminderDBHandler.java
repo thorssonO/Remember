@@ -19,7 +19,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
 
     private final static String DATABASE_NAME = "DATABASE_NAME";
-    private final static int DATABASE_VERSION = 18;
+    private final static int DATABASE_VERSION = 19;
 
     //Tabeller
     private final static String TABLE_NAME = "REMINDERS";
