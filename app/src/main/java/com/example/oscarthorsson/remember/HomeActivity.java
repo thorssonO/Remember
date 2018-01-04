@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,13 +86,29 @@ public class HomeActivity extends AppCompatActivity {
         System.out.println("MAC från databasen: " + rDBH.getMac());
 
         if (rDBH.getMac().equals("02:00:00:00:00:00")) {
-            System.out.println("Bygger builder");
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("No Network, Check Lists to Not Forget!");
-            builder.setTitle("ALERT");
-            builder.show();
-            builder.setCancelable(true);
-            unregisterReceiver(broadcast);
+            try {
+
+                //Spelar upp det notifikationsljud som är standard till
+                //mobilen. Inte den som går att välja i settings.
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                System.out.println("försöker spela notisljud");
+                r.play();
+
+
+                //ndeanstående kod visar dialogrutan att applikatioenn inte när nätverket.
+                System.out.println("Bygger builder");
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("No Network, Check Lists to Not Forget!");
+                builder.setTitle("ALERT");
+                builder.show();
+                builder.setCancelable(true);
+                unregisterReceiver(broadcast);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
         //ToolBar: använda, möjligen senare(?)
