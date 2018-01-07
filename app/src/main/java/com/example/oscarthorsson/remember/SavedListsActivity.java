@@ -41,4 +41,12 @@ public class SavedListsActivity extends AppCompatActivity {
         listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
         listView.setAdapter(listAdapter);
     }// Hämtar viewen för hur datan skall visas från adaptern
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,
+                android.R.anim.fade_out);
+
+    }
 }

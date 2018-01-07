@@ -91,6 +91,7 @@ public class AddRemActivity extends AppCompatActivity {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(AddRemActivity.this);
                     builder1.setMessage("Don't forget to set a date");
                     builder1.setCancelable(true);
+                    builder1.show();
                 }
 
                 //Följande 2 rader är till för att användaren
@@ -120,6 +121,14 @@ public class AddRemActivity extends AppCompatActivity {
                 System.out.println("New list: " + remList);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,
+                android.R.anim.fade_out);
+
     }
 
     //Metod för att lägga till nya edittexts i
