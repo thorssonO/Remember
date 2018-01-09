@@ -95,8 +95,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println("försöker spela notisljud");
                 r.play();
 
-
-                //ndeanstående kod visar dialogrutan att applikatioenn inte när nätverket.
+                //nedanstående kod visar dialogrutan att applikatioenn inte när nätverket.
                 System.out.println("Bygger builder");
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("No Network, Check Lists to Not Forget!");
