@@ -113,6 +113,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
+
         if (convertView == null) {
             LayoutInflater iInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = iInflater.inflate(R.layout.list_group,null);
