@@ -19,12 +19,13 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
 
     private final static String DATABASE_NAME = "DATABASE_NAME";
-    private final static int DATABASE_VERSION = 19;
+    private final static int DATABASE_VERSION = 25;
 
     //Tabeller
     private final static String TABLE_NAME = "REMINDERS";
     private final static String ITEM_TABLE_NAME = "ITEM_TABLE";
     private final static String MAC_TABLE_NAME = "MAC_TABLE";
+    private final static String ITEMCOUNT_NAME = "ITEMCOUNT_TABLE";
 
     //Kolumner:
     private final static String title = "REMINDER_TITLE";
@@ -34,6 +35,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
     private final static String ID = "ID";
     private final static String MAC = "MAC_ADDRESS";
     private final static String MAC_ADDRESS = "02:00:00:00:00:00";
+    private final static String ITEM_COUNT = "ITEM_COUNT";
 
     public ReminderDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION );
@@ -57,9 +59,13 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         String CREATE_MAC_TABLE = "CREATE TABLE " + MAC_TABLE_NAME + "("
                 + MAC + " text" + ")";
 
+        String CREATE_ITEMCOUNT_TABLE = "CREATE TABLE " + ITEMCOUNT_NAME + "("
+                + ITEM_COUNT + " integer" + ")";
+
         db.execSQL(CREATE_LIST_TABLE);
         db.execSQL(CREATE_ITEM_TABLE);
         db.execSQL(CREATE_MAC_TABLE);
+        db.execSQL(CREATE_ITEMCOUNT_TABLE);
     }
 
     //nedan metod körs ifall databasversionen ändrats
@@ -68,6 +74,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MAC_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ITEMCOUNT_NAME);
         onCreate(db);
     }
 
@@ -111,6 +118,29 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
         values.put("ID", id);
         db.insert(ITEM_TABLE_NAME,null, values);
         db.close();
+    }
+
+    public void addItemCount(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("ITEM_COUNT", ITEM_COUNT);
+
+        db.insert(TABLE_NAME,null, values);
+        System.out.println("lägger in itemcount i databasen" + ITEM_COUNT);
+        db.close();
+    }
+
+    public int getItemCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectRem = "SELECT * FROM ITEM_TABLE;" ;
+        Cursor cursor = db.rawQuery(selectRem, null);
+
+        if (cursor.moveToFirst()) {
+            return cursor.getInt(0);
+        }
+        cursor.close();
+        return 0;
     }
 
     public void addMac(){

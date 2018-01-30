@@ -36,12 +36,6 @@ public class SavedListsActivity extends AppCompatActivity {
         view();
     }
 
-    public void view(){
-        ExpandableListView listView = findViewById(R.id.test);
-        listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
-        listView.setAdapter(listAdapter);
-    }// Hämtar viewen för hur datan skall visas från adaptern
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -49,4 +43,10 @@ public class SavedListsActivity extends AppCompatActivity {
                 android.R.anim.fade_out);
 
     }
+
+    public void view(){
+        ExpandableListView listView = findViewById(R.id.test);
+        listAdapter = new ExpandableListViewAdapter(this, dataHeader, theHashMap);
+        listView.setAdapter(listAdapter);
+    }// Hämtar viewen för hur datan skall visas från adaptern
 }

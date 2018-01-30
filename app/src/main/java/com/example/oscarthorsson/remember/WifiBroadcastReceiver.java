@@ -34,6 +34,7 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
+
     //Kallas på från Homeactivity, via onReceive() ovan
     private boolean checkConnectedToWifi(Context context) {
         macAddress = "Mac-adressen";

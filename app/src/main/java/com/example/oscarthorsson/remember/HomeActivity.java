@@ -82,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ReminderDBHandler rDBH = new ReminderDBHandler(this);
         rDBH.addMac();
+        rDBH.addItemCount();
 
         System.out.println("MAC från databasen: " + rDBH.getMac());
 
@@ -95,7 +96,8 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println("försöker spela notisljud");
                 r.play();
 
-                //nedanstående kod visar dialogrutan att applikatioenn inte när nätverket.
+
+                //ndeanstående kod visar dialogrutan att applikatioenn inte när nätverket.
                 System.out.println("Bygger builder");
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("No Network, Check Lists to Not Forget!");

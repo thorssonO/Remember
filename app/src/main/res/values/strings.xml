@@ -90,5 +90,4 @@
     <string name="title">Title</string>
     <string name="title_for_this_reminder">Title for this reminder:</string>
     <string name="network_preferences">Network preferences</string>
-    <string name="title_activity_splash">SplashActivity</string>
 </resources>

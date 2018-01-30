@@ -24,7 +24,7 @@ public class AddRemActivity extends AppCompatActivity {
     public Button dateButton;
     public Button addButton;
     public Button saveButton;
-    static int itemCount = 0;
+    static int itemCount;
     ReminderDBHandler reminderDB;
     Calendar myCalendar = Calendar.getInstance();
 
@@ -91,7 +91,6 @@ public class AddRemActivity extends AppCompatActivity {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(AddRemActivity.this);
                     builder1.setMessage("Don't forget to set a date");
                     builder1.setCancelable(true);
-                    builder1.show();
                 }
 
                 //Följande 2 rader är till för att användaren
@@ -102,12 +101,15 @@ public class AddRemActivity extends AppCompatActivity {
                 LinearLayout layout = findViewById(R.id.buttonLayout);
                 List<ReminderItem> remItems = new ArrayList<>();
 
-                for (int i = 0; i < itemCount; i++) {
-                    EditText anEdit = layout.findViewById(i);
+                itemCount=reminderDB.getItemCount();
+                itemCount++;
+
+                //for (int i = 0; i < itemCount; i++) {
+                    EditText anEdit = layout.findViewById(itemCount);
 
                     ReminderItem remItem = new ReminderItem(anEdit.getText().toString());
                     remItems.add(remItem);
-                }
+                //}
 
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
