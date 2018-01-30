@@ -19,7 +19,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
 
     private final static String DATABASE_NAME = "DATABASE_NAME";
-    private final static int DATABASE_VERSION = 25;
+    private final static int DATABASE_VERSION = 26;
 
     //Tabeller
     private final static String TABLE_NAME = "REMINDERS";
@@ -126,7 +126,7 @@ public class ReminderDBHandler extends SQLiteOpenHelper {
 
         values.put("ITEM_COUNT", ITEM_COUNT);
 
-        db.insert(TABLE_NAME,null, values);
+        db.insert(ITEMCOUNT_NAME,null, values);
         System.out.println("lägger in itemcount i databasen" + ITEM_COUNT);
         db.close();
     }
