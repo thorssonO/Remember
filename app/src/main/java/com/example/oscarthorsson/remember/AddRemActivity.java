@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,7 +25,7 @@ public class AddRemActivity extends AppCompatActivity {
     public Button dateButton;
     public Button addButton;
     public Button saveButton;
-    static int itemCount;
+    static int itemCount = 0;
     ReminderDBHandler reminderDB;
     Calendar myCalendar = Calendar.getInstance();
 
@@ -101,15 +102,17 @@ public class AddRemActivity extends AppCompatActivity {
                 LinearLayout layout = findViewById(R.id.buttonLayout);
                 List<ReminderItem> remItems = new ArrayList<>();
 
-                itemCount=reminderDB.getItemCount();
-                itemCount++;
+                //itemCount=reminderDB.getItemCount();
+                //itemCount++;
 
-                //for (int i = 0; i < itemCount; i++) {
-                    EditText anEdit = layout.findViewById(itemCount);
-
+                for (int i = 0; i < itemCount; i++) {
+                    //titleText
+                    String tag = "edit-" + i;
+                    EditText anEdit = layout.findViewWithTag(tag);
+                    Log.d("Idiot-henrik", "   * " + tag + " => anEdit " + anEdit);
                     ReminderItem remItem = new ReminderItem(anEdit.getText().toString());
                     remItems.add(remItem);
-                //}
+                }
 
                 String title = ((EditText)findViewById(R.id.titleText)).getText().toString();
                 ReminderList remList = new ReminderList(title, remItems, myCalendar.getTime());
@@ -136,15 +139,16 @@ public class AddRemActivity extends AppCompatActivity {
     //Metod för att lägga till nya edittexts i
     //linearlayouten. Anropas längre upp i klassen, i onClick()
     protected void createEditTextView() {
-
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
+        newEdit.setTag("edit-" + itemCount);
         newEdit.setId(itemCount++);
         newEdit.setHint("New item:");
         newEdit.requestFocus();
         newEdit.setMaxLines(1);
         newEdit.setSingleLine(true);
         newEdit.setLines(1);
+        Log.d("henrik", "  tag: " + newEdit.getTag());
         layout.addView(newEdit);
     }
 }
