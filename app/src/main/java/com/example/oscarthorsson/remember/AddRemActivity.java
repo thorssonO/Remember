@@ -25,7 +25,7 @@ public class AddRemActivity extends AppCompatActivity {
     public Button dateButton;
     public Button addButton;
     public Button saveButton;
-    static int itemCount = 0;
+    public int itemCount = 0;
     ReminderDBHandler reminderDB;
     Calendar myCalendar = Calendar.getInstance();
 
@@ -105,12 +105,14 @@ public class AddRemActivity extends AppCompatActivity {
                 //itemCount=reminderDB.getItemCount();
                 //itemCount++;
 
-                for (int i = 0; i < itemCount; i++) {
+                for (int i = 0; i < itemCount-1 ; i++) {
                     //titleText
+                    System.out.println("itemCount:"+ itemCount);
                     String tag = "edit-" + i;
                     EditText anEdit = layout.findViewWithTag(tag);
                     Log.d("Idiot-henrik", "   * " + tag + " => anEdit " + anEdit);
-                    ReminderItem remItem = new ReminderItem(anEdit.getText().toString());
+                    String item = anEdit.getText().toString();
+                    ReminderItem remItem = new ReminderItem(item);
                     remItems.add(remItem);
                 }
 
