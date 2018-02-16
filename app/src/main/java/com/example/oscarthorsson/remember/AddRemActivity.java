@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class AddRemActivity extends AppCompatActivity {
                 //itemCount=reminderDB.getItemCount();
                 //itemCount++;
 
-                for (int i = 0; i < itemCount-1 ; i++) {
+                for (int i = 0; i <itemCount ; i++) {
                     //titleText
                     System.out.println("itemCount:"+ itemCount);
                     String tag = "edit-" + i;
@@ -140,7 +141,7 @@ public class AddRemActivity extends AppCompatActivity {
 
     //Metod för att lägga till nya edittexts i
     //linearlayouten. Anropas längre upp i klassen, i onClick()
-    protected void createEditTextView() {
+    protected void createEditTextView(){
         LinearLayout layout = findViewById(R.id.buttonLayout);
         EditText newEdit = new EditText(this);
         newEdit.setTag("edit-" + itemCount);
